@@ -1,5 +1,14 @@
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, User, LogOut, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { useEffect, useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface HeaderProps {
   cartItemCount: number;
@@ -7,6 +16,45 @@ interface HeaderProps {
 }
 
 const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState<any>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        checkAdminRole(session.user.id);
+      } else {
+        setIsAdmin(false);
+      }
+    });
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        checkAdminRole(session.user.id);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const checkAdminRole = async (userId: string) => {
+    const { data } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId)
+      .eq("role", "admin")
+      .maybeSingle();
+    
+    setIsAdmin(!!data);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/");
+  };
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
       <div className="container mx-auto px-4 py-4">
@@ -36,18 +84,47 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
             </a>
           </nav>
 
-          <Button 
-            onClick={onCartClick}
-            className="relative bg-primary hover:bg-primary/90 text-primary-foreground"
-          >
-            <ShoppingCart className="h-5 w-5 ml-2" />
-            سبد خرید
-            {cartItemCount > 0 && (
-              <span className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-accent-foreground">
-                {cartItemCount}
-              </span>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              className="relative"
+              onClick={onCartClick}
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                  {cartItemCount}
+                </span>
+              )}
+            </Button>
+
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {isAdmin && (
+                    <DropdownMenuItem onClick={() => navigate("/admin")}>
+                      <Shield className="ml-2 h-4 w-4" />
+                      پنل مدیریت
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuItem onClick={handleLogout}>
+                    <LogOut className="ml-2 h-4 w-4" />
+                    خروج
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="outline" onClick={() => navigate("/auth")}>
+                ورود / ثبت نام
+              </Button>
             )}
-          </Button>
+          </div>
         </div>
       </div>
     </header>

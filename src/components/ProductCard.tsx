@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   description: string;
   price: number;
@@ -18,13 +18,13 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   return (
-    <Card className="group overflow-hidden transition-all hover:shadow-[var(--shadow-hover)] border-border">
+    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 bg-card/80 backdrop-blur-sm">
       <CardContent className="p-0">
-        <div className="relative overflow-hidden aspect-square bg-muted">
-          <img 
-            src={product.image} 
+        <div className="aspect-square overflow-hidden">
+          <img
+            src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
           />
         </div>
         

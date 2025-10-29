@@ -1,71 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import ProductCard, { Product } from "@/components/ProductCard";
-import Cart, { CartItem } from "@/components/Cart";
+import ProductCard from "@/components/ProductCard";
+import Cart from "@/components/Cart";
+import { Loader2 } from "lucide-react";
 
-import productLiteh from "@/assets/product-liteh.jpg";
-import productKhiarshoor from "@/assets/product-khiarshoor.jpg";
-import productMakhloot from "@/assets/product-makhloot.jpg";
-import productSeer from "@/assets/product-seer.jpg";
-import productBademjan from "@/assets/product-bademjan.jpg";
-import productMooseer from "@/assets/product-mooseer.jpg";
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  weight: string;
+}
 
-const products: Product[] = [
-  {
-    id: 1,
-    name: "ترشی لیته سنتی",
-    description: "ترشی لیته خانگی تهیه شده از بهترین سبزیجات با طعم اصیل و سنتی",
-    price: 85000,
-    image: productLiteh,
-    weight: "۷۰۰ گرم"
-  },
-  {
-    id: 2,
-    name: "ترشی خیارشور",
-    description: "خیارشور خوشمزه و ترد با سرکه طبیعی و چاشنی‌های سنتی",
-    price: 65000,
-    image: productKhiarshoor,
-    weight: "۸۰۰ گرم"
-  },
-  {
-    id: 3,
-    name: "ترشی مخلوط",
-    description: "ترکیبی از بهترین سبزیجات شامل هویج، گل کلم، لیته و کرفس",
-    price: 75000,
-    image: productMakhloot,
-    weight: "۷۰۰ گرم"
-  },
-  {
-    id: 4,
-    name: "ترشی سیر",
-    description: "سیر ترشی شده در سرکه با طعم تند و خوشمزه",
-    price: 55000,
-    image: productSeer,
-    weight: "۵۰۰ گرم"
-  },
-  {
-    id: 5,
-    name: "ترشی بادمجان",
-    description: "بادمجان ترشی شده با گردو، سبزیجات معطر و چاشنی‌های خوشمزه",
-    price: 95000,
-    image: productBademjan,
-    weight: "۷۰۰ گرم"
-  },
-  {
-    id: 6,
-    name: "ترشی موسیر",
-    description: "موسیر تازه و خوشمزه با سرکه طبیعی",
-    price: 70000,
-    image: productMooseer,
-    weight: "۶۰۰ گرم"
-  }
-];
+interface CartItem extends Product {
+  quantity: number;
+}
 
 const Index = () => {
+  const [products, setProducts] = useState<Product[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      setProducts(data || []);
+    } catch (error) {
+      toast({
+        title: "خطا",
+        description: "بارگذاری محصولات با مشکل مواجه شد.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleAddToCart = (product: Product) => {
     setCartItems(prevItems => {
@@ -91,7 +74,7 @@ const Index = () => {
     });
   };
 
-  const handleUpdateQuantity = (id: number, quantity: number) => {
+  const handleUpdateQuantity = (id: string, quantity: number) => {
     if (quantity <= 0) {
       handleRemoveItem(id);
       return;
@@ -103,7 +86,7 @@ const Index = () => {
     );
   };
 
-  const handleRemoveItem = (id: number) => {
+  const handleRemoveItem = (id: string) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
     toast({
       title: "از سبد خرید حذف شد",
@@ -111,78 +94,99 @@ const Index = () => {
     });
   };
 
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="animated-background min-h-screen">
       <Header 
-        cartItemCount={totalItems} 
+        cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         onCartClick={() => setIsCartOpen(true)}
       />
-      
-      <Hero />
 
-      <section id="products" className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary mb-4">محصولات ما</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              تمامی محصولات با بهترین کیفیت و رعایت کامل اصول بهداشتی تهیه می‌شوند
+      <main>
+        <Hero />
+
+        {/* Products Section */}
+        <section id="products" className="py-16 px-4">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-12 text-primary animate-fade-in">
+              محصولات ما
+            </h2>
+            {loading ? (
+              <div className="flex justify-center items-center py-20">
+                <Loader2 className="h-12 w-12 animate-spin text-primary" />
+              </div>
+            ) : products.length === 0 ? (
+              <div className="text-center py-20 text-muted-foreground animate-fade-in">
+                <p className="text-xl">محصولی در حال حاضر موجود نیست.</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {products.map((product, index) => (
+                  <div 
+                    key={product.id}
+                    className="animate-slide-up"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <ProductCard
+                      product={product}
+                      onAddToCart={handleAddToCart}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="py-16 px-4 bg-card/50 backdrop-blur-sm">
+          <div className="max-w-4xl mx-auto text-center animate-fade-in">
+            <h2 className="text-4xl font-bold mb-8 text-primary">درباره ما</h2>
+            <p className="text-lg leading-relaxed text-muted-foreground mb-6">
+              فروشگاه ترشیجات سنتی با بیش از ۳۰ سال سابقه، تولید کننده انواع ترشی‌های خانگی و سنتی با کیفیت بالا می‌باشد.
+              ما با استفاده از بهترین مواد اولیه و دستور پخت‌های اصیل، طعمی بی‌نظیر را برای شما به ارمغان می‌آوریم.
+            </p>
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              تمامی محصولات ما با رعایت کامل اصول بهداشتی و استفاده از مواد طبیعی تهیه می‌شوند.
             </p>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map(product => (
-              <ProductCard 
-                key={product.id}
-                product={product}
-                onAddToCart={handleAddToCart}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="about" className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-primary mb-6">درباره ما</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              ما با بیش از ۲۰ سال تجربه در تهیه ترشیجات سنتی، بهترین و مرغوب‌ترین محصولات را با رعایت کامل اصول بهداشتی و استفاده از مرغوب‌ترین مواد اولیه تهیه می‌کنیم.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              تمام محصولات ما به صورت خانگی و با دستور اصیل سنتی تهیه شده و هیچگونه مواد نگهدارنده و افزودنی شیمیایی ندارند.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-primary mb-6">تماس با ما</h2>
-            <div className="space-y-4 text-lg">
-              <p className="text-muted-foreground">
-                📞 تلفن: ۰۲۱-۱۲۳۴۵۶۷۸
-              </p>
-              <p className="text-muted-foreground">
-                📱 موبایل: ۰۹۱۲-۱۲۳۴۵۶۷
-              </p>
-              <p className="text-muted-foreground">
-                📍 آدرس: تهران، خیابان انقلاب، پلاک ۱۲۳
-              </p>
+        {/* Contact Section */}
+        <section id="contact" className="py-16 px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-12 text-primary animate-fade-in">
+              تماس با ما
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="float-animation flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105">
+                <span className="text-4xl mb-4">📞</span>
+                <h3 className="font-bold text-xl mb-2">تلفن</h3>
+                <p className="text-muted-foreground" dir="ltr">021-12345678</p>
+              </div>
+              
+              <div className="float-animation flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105" style={{ animationDelay: "1s" }}>
+                <span className="text-4xl mb-4">📧</span>
+                <h3 className="font-bold text-xl mb-2">ایمیل</h3>
+                <p className="text-muted-foreground">info@torshijat.com</p>
+              </div>
+              
+              <div className="float-animation flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105" style={{ animationDelay: "2s" }}>
+                <span className="text-4xl mb-4">📍</span>
+                <h3 className="font-bold text-xl mb-2">آدرس</h3>
+                <p className="text-muted-foreground">تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <footer className="bg-primary text-primary-foreground py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-lg">
-            © ۱۴۰۳ فروشگاه ترشیجات سنتی - تمامی حقوق محفوظ است
-          </p>
-        </div>
-      </footer>
+        {/* Footer */}
+        <footer className="bg-primary text-primary-foreground py-8 px-4">
+          <div className="max-w-7xl mx-auto text-center">
+            <p className="text-lg font-bold mb-2">فروشگاه ترشیجات سنتی</p>
+            <p className="text-sm opacity-90">تمامی حقوق محفوظ است © ۱۴۰۳</p>
+          </div>
+        </footer>
+      </main>
 
       <Cart 
         isOpen={isCartOpen}

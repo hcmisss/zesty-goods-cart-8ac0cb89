@@ -83,9 +83,35 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Sahel', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     direction: rtl;
   }
 }
 
-@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/sahel-font@v3.4.0/dist/font-face.css');
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-20px) translateX(10px); }
+  66% { transform: translateY(10px) translateX(-10px); }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-background {
+  background: linear-gradient(-45deg, 
+    hsl(var(--primary) / 0.1), 
+    hsl(var(--secondary) / 0.1), 
+    hsl(var(--accent) / 0.1),
+    hsl(var(--primary) / 0.05));
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}

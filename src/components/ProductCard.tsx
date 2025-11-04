@@ -1,6 +1,7 @@
-import { Plus } from "lucide-react";
+import { Plus, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 export interface Product {
   id: string;
@@ -17,6 +18,8 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+  const navigate = useNavigate();
+  
   return (
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 bg-card/80 backdrop-blur-sm">
       <CardContent className="p-0">
@@ -39,25 +42,35 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
             وزن: {product.weight}
           </p>
           
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <span className="text-2xl font-bold text-primary">
                 {product.price.toLocaleString('fa-IR')}
               </span>
               <span className="text-sm text-muted-foreground mr-1">تومان</span>
             </div>
-            
-            <Button 
-              onClick={() => onAddToCart(product)}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
-              size="sm"
-            >
-              <Plus className="h-4 w-4 ml-1" />
-              افزودن
-            </Button>
           </div>
         </div>
       </CardContent>
+      <CardFooter className="p-3 pt-0 flex gap-2">
+        <Button 
+          onClick={() => onAddToCart(product)}
+          className="bg-primary hover:bg-primary/90 text-primary-foreground flex-1"
+          size="sm"
+        >
+          <Plus className="h-4 w-4 ml-1" />
+          افزودن
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => navigate(`/product/${product.id}`)}
+          className="flex-1"
+        >
+          <Eye className="h-4 w-4 ml-1" />
+          مشاهده
+        </Button>
+      </CardFooter>
     </Card>
   );
 };

@@ -83,12 +83,12 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Sahel', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Vazir', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     direction: rtl;
   }
 }
 
-@import url('https://cdn.jsdelivr.net/gh/rastikerdar/sahel-font@v3.4.0/dist/font-face.css');
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
 
 @keyframes float {
   0%, 100% { transform: translateY(0px) translateX(0px); }

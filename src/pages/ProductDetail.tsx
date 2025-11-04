@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Loader2, ShoppingCart, ArrowRight } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import ProductReviews from "@/components/ProductReviews";
-import Header from "@/components/Header";
 
 interface Product {
   id: string;
@@ -81,7 +80,6 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen animated-background">
-      <Header />
       <main className="container mx-auto px-4 py-8">
         <Button
           variant="ghost"

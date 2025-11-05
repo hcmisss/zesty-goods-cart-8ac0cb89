@@ -94,6 +94,11 @@ const Index = () => {
     });
   };
 
+  const handleOrderSuccess = () => {
+    setCartItems([]);
+    setIsCartOpen(false);
+  };
+
   return (
     <div className="animated-background min-h-screen">
       <Header 
@@ -194,6 +199,7 @@ const Index = () => {
         items={cartItems}
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
+        onOrderSuccess={handleOrderSuccess}
       />
     </div>
   );

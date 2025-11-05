@@ -107,6 +107,10 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => navigate("/orders")}>
+                    <ShoppingCart className="ml-2 h-4 w-4" />
+                    سفارش‌های من
+                  </DropdownMenuItem>
                   {isAdmin && (
                     <DropdownMenuItem onClick={() => navigate("/admin")}>
                       <Shield className="ml-2 h-4 w-4" />

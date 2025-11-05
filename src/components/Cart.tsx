@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { X, Minus, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Product } from "./ProductCard";
+import OrderDialog from "./OrderDialog";
 
 export interface CartItem extends Product {
   quantity: number;
@@ -13,9 +15,11 @@ interface CartProps {
   items: CartItem[];
   onUpdateQuantity: (id: string, quantity: number) => void;
   onRemoveItem: (id: string) => void;
+  onOrderSuccess: () => void;
 }
 
-const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem }: CartProps) => {
+const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderSuccess }: CartProps) => {
+  const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
@@ -104,7 +108,7 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem }: CartPr
                 
                 <Button 
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 text-lg font-bold"
-                  onClick={() => alert('قابلیت پرداخت به زودی اضافه خواهد شد!')}
+                  onClick={() => setIsOrderDialogOpen(true)}
                 >
                   ثبت سفارش
                 </Button>
@@ -112,6 +116,14 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem }: CartPr
             </>
           )}
         </div>
+
+        <OrderDialog
+          isOpen={isOrderDialogOpen}
+          onClose={() => setIsOrderDialogOpen(false)}
+          items={items}
+          total={total}
+          onOrderSuccess={onOrderSuccess}
+        />
       </SheetContent>
     </Sheet>
   );

@@ -1,16 +1,7 @@
-import picklesBackground from "@/assets/pickles-background.jpg";
-
 const Hero = () => {
   return (
     <section id="home" className="relative h-[500px] overflow-hidden">
-      {/* Background with frosted glass effect */}
-      <div className="absolute inset-0 -z-10">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${picklesBackground})` }}
-        />
-        <div className="absolute inset-0 backdrop-blur-md bg-black/40" />
-      </div>
+      {/* Hero content without separate background - uses global background */}
       
       <div className="container relative mx-auto px-4 h-full flex items-center">
         <div className="max-w-2xl">

@@ -45,11 +45,20 @@ const OrderDialog = ({ isOpen, onClose, items, total, onOrderSuccess }: OrderDia
       
       if (!session) {
         toast({
-          title: "خطا",
-          description: "لطفا ابتدا وارد حساب کاربری خود شوید",
+          title: "لطفا ابتدا وارد شوید",
+          description: "برای ثبت سفارش باید وارد حساب کاربری خود شوید",
           variant: "destructive",
+          action: (
+            <button
+              onClick={() => window.location.href = '/auth'}
+              className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90"
+            >
+              ورود / ثبت نام
+            </button>
+          ),
         });
         setLoading(false);
+        onClose();
         return;
       }
 

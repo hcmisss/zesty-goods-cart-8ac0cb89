@@ -56,7 +56,7 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
     navigate("/");
   };
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
+    <header className="sticky top-0 z-50 w-full border-b border-border/30 bg-card/30 backdrop-blur-md shadow-lg">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">

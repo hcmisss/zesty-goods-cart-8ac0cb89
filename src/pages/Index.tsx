@@ -185,10 +185,10 @@ const Index = () => {
         </section>
 
         {/* Footer */}
-        <footer className="bg-primary text-primary-foreground py-8 px-4">
+        <footer className="bg-card/30 backdrop-blur-md border-t border-border/30 text-foreground py-8 px-4 shadow-lg">
           <div className="max-w-7xl mx-auto text-center">
-            <p className="text-lg font-bold mb-2">فروشگاه ترشیجات سنتی</p>
-            <p className="text-sm opacity-90">تمامی حقوق محفوظ است © ۱۴۰۳</p>
+            <p className="text-lg font-bold mb-2 text-primary">فروشگاه ترشیجات سنتی</p>
+            <p className="text-sm text-muted-foreground">تمامی حقوق محفوظ است © ۱۴۰۳</p>
           </div>
         </footer>
       </main>

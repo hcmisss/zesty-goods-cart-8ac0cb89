@@ -21,12 +21,14 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const navigate = useNavigate();
   
   return (
-    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 bg-card/80 backdrop-blur-sm">
+    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 bg-card/40 backdrop-blur-md border-border/30">
       <CardContent className="p-0">
-        <div className="aspect-square overflow-hidden">
+        <div className="aspect-square overflow-hidden bg-background/20">
           <img
             src={product.image}
             alt={product.name}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
           />
         </div>

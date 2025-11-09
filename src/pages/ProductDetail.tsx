@@ -83,25 +83,27 @@ const ProductDetail = () => {
       <main className="container mx-auto px-4 py-8">
         <Button
           variant="ghost"
-          className="mb-6"
+          className="mb-6 bg-card/30 backdrop-blur-md border-border/30 hover:bg-card/40"
           onClick={() => navigate("/")}
         >
           <ArrowRight className="ml-2 h-4 w-4" />
           بازگشت به فروشگاه
         </Button>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="animate-fade-in">
+        <div className="grid md:grid-cols-2 gap-8 mb-12 bg-card/30 backdrop-blur-md border border-border/30 rounded-lg p-6 shadow-xl">
+          <div className="animate-fade-in rounded-lg overflow-hidden bg-background/20">
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-[400px] object-cover rounded-lg shadow-lg"
+              loading="eager"
+              decoding="async"
+              className="w-full h-[400px] object-cover"
             />
           </div>
 
           <div className="space-y-6 animate-slide-up">
-            <h1 className="text-4xl font-bold">{product.name}</h1>
-            <p className="text-lg text-muted-foreground">{product.description}</p>
+            <h1 className="text-4xl font-bold text-foreground">{product.name}</h1>
+            <p className="text-lg text-foreground/80">{product.description}</p>
             <div className="flex items-center gap-4">
               <span className="text-3xl font-bold text-primary">
                 {product.price.toLocaleString()} تومان

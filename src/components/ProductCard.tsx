@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Plus, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -19,28 +20,33 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const navigate = useNavigate();
+  const [imageLoaded, setImageLoaded] = useState(false);
   
   return (
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 bg-card/40 backdrop-blur-md border-border/30">
       <CardContent className="p-0">
-        <div className="aspect-square overflow-hidden bg-background/20">
+        <div className="aspect-square overflow-hidden bg-background/20 relative">
+          {!imageLoaded && (
+            <div className="absolute inset-0 animate-pulse bg-muted/50" />
+          )}
           <img
             src={product.image}
             alt={product.name}
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+            onLoad={() => setImageLoaded(true)}
+            className={`w-full h-full object-cover hover:scale-110 transition-transform duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
           />
         </div>
         
         <div className="p-5">
-          <h3 className="font-bold text-lg mb-2 text-card-foreground">
+          <h3 className="font-bold text-lg mb-2 text-foreground">
             {product.name}
           </h3>
-          <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+          <p className="text-sm text-foreground/70 mb-3 line-clamp-2">
             {product.description}
           </p>
-          <p className="text-xs text-muted-foreground mb-4">
+          <p className="text-xs text-foreground/60 mb-4">
             وزن: {product.weight}
           </p>
           

@@ -143,14 +143,14 @@ const Index = () => {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-16 px-4 bg-card/50 backdrop-blur-sm">
+        <section id="about" className="py-16 px-4 bg-card/30 backdrop-blur-md border-y border-border/20">
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
             <h2 className="text-4xl font-bold mb-8 text-primary">درباره ما</h2>
-            <p className="text-lg leading-relaxed text-muted-foreground mb-6">
+            <p className="text-lg leading-relaxed text-foreground/90 mb-6">
               فروشگاه ترشیجات سنتی با بیش از ۳۰ سال سابقه، تولید کننده انواع ترشی‌های خانگی و سنتی با کیفیت بالا می‌باشد.
               ما با استفاده از بهترین مواد اولیه و دستور پخت‌های اصیل، طعمی بی‌نظیر را برای شما به ارمغان می‌آوریم.
             </p>
-            <p className="text-lg leading-relaxed text-muted-foreground">
+            <p className="text-lg leading-relaxed text-foreground/90">
               تمامی محصولات ما با رعایت کامل اصول بهداشتی و استفاده از مواد طبیعی تهیه می‌شوند.
             </p>
           </div>
@@ -163,22 +163,22 @@ const Index = () => {
               تماس با ما
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="float-animation flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105">
+              <div className="float-animation flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105">
                 <span className="text-4xl mb-4">📞</span>
-                <h3 className="font-bold text-xl mb-2">تلفن</h3>
-                <p className="text-muted-foreground" dir="ltr">021-12345678</p>
+                <h3 className="font-bold text-xl mb-2 text-foreground">تلفن</h3>
+                <p className="text-foreground/80 font-medium" dir="ltr">021-12345678</p>
               </div>
               
-              <div className="float-animation flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105" style={{ animationDelay: "1s" }}>
+              <div className="float-animation flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105" style={{ animationDelay: "1s" }}>
                 <span className="text-4xl mb-4">📧</span>
-                <h3 className="font-bold text-xl mb-2">ایمیل</h3>
-                <p className="text-muted-foreground">info@torshijat.com</p>
+                <h3 className="font-bold text-xl mb-2 text-foreground">ایمیل</h3>
+                <p className="text-foreground/80 font-medium">info@torshijat.com</p>
               </div>
               
-              <div className="float-animation flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-all hover:scale-105" style={{ animationDelay: "2s" }}>
+              <div className="float-animation flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105" style={{ animationDelay: "2s" }}>
                 <span className="text-4xl mb-4">📍</span>
-                <h3 className="font-bold text-xl mb-2">آدرس</h3>
-                <p className="text-muted-foreground">تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
+                <h3 className="font-bold text-xl mb-2 text-foreground">آدرس</h3>
+                <p className="text-foreground/80 font-medium">تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
               </div>
             </div>
           </div>

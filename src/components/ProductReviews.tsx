@@ -127,25 +127,25 @@ const ProductReviews = ({ productId }: ProductReviewsProps) => {
 
   return (
     <div className="space-y-6">
-      <Card className="animate-fade-in">
+      <Card className="animate-fade-in bg-card/40 backdrop-blur-md border-border/30 shadow-xl">
         <CardHeader>
-          <CardTitle>نظرات مشتریان</CardTitle>
+          <CardTitle className="text-foreground">نظرات مشتریان</CardTitle>
         </CardHeader>
         <CardContent>
           {user && (
-            <form onSubmit={handleSubmit} className="space-y-4 mb-6 p-4 bg-muted/50 rounded-lg">
+            <form onSubmit={handleSubmit} className="space-y-4 mb-6 p-4 bg-background/30 backdrop-blur-sm border border-border/20 rounded-lg">
               <div className="space-y-2">
-                <label className="text-sm font-medium">امتیاز شما:</label>
+                <label className="text-sm font-medium text-foreground">امتیاز شما:</label>
                 {renderStars(rating, true)}
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">نظر شما:</label>
+                <label className="text-sm font-medium text-foreground">نظر شما:</label>
                 <Textarea
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   placeholder="نظر خود را بنویسید..."
                   required
-                  className="min-h-[100px]"
+                  className="min-h-[100px] bg-background/50 backdrop-blur-sm border-border/30"
                 />
               </div>
               <Button type="submit" disabled={submitting} className="w-full">
@@ -160,10 +160,10 @@ const ProductReviews = ({ productId }: ProductReviewsProps) => {
 
           {loading ? (
             <div className="flex justify-center p-8">
-              <Loader2 className="h-8 w-8 animate-spin" />
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           ) : reviews.length === 0 ? (
-            <p className="text-center text-muted-foreground p-8">
+            <p className="text-center text-foreground/70 p-8">
               هنوز نظری ثبت نشده است.
             </p>
           ) : (
@@ -171,16 +171,16 @@ const ProductReviews = ({ productId }: ProductReviewsProps) => {
               {reviews.map((review) => (
                 <div
                   key={review.id}
-                  className="p-4 border rounded-lg space-y-2 animate-slide-up"
+                  className="p-4 bg-background/30 backdrop-blur-sm border border-border/20 rounded-lg space-y-2 animate-slide-up shadow-md hover:shadow-lg transition-all"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-medium">
+                    <span className="font-medium text-foreground">
                       {review.profiles.full_name || "کاربر"}
                     </span>
                     {renderStars(review.rating)}
                   </div>
-                  <p className="text-muted-foreground">{review.comment}</p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-foreground/80">{review.comment}</p>
+                  <p className="text-xs text-foreground/60">
                     {new Date(review.created_at).toLocaleDateString("fa-IR")}
                   </p>
                 </div>

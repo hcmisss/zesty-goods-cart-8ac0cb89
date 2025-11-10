@@ -196,11 +196,11 @@ const Admin = () => {
   }
 
   return (
-    <div className="min-h-screen animated-background p-6">
+    <div className="min-h-screen animated-background p-6 pb-24">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">پنل مدیریت</h1>
-          <Button onClick={handleLogout} variant="outline">
+          <h1 className="text-4xl font-bold text-foreground">پنل مدیریت</h1>
+          <Button onClick={handleLogout} variant="outline" className="bg-card/30 backdrop-blur-md border-border/30 hover:bg-card/40">
             <LogOut className="ml-2 h-4 w-4" />
             خروج
           </Button>
@@ -208,65 +208,70 @@ const Admin = () => {
 
         <div className="grid gap-6 md:grid-cols-2">
           {/* Form Section */}
-          <Card className="animate-fade-in">
+          <Card className="animate-fade-in bg-card/40 backdrop-blur-md border-border/30 shadow-xl">
             <CardHeader>
-              <CardTitle>{isEditing ? "ویرایش محصول" : "افزودن محصول جدید"}</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-foreground">{isEditing ? "ویرایش محصول" : "افزودن محصول جدید"}</CardTitle>
+              <CardDescription className="text-foreground/70">
                 اطلاعات محصول را وارد کنید
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">نام محصول</Label>
+                  <Label htmlFor="name" className="text-foreground">نام محصول</Label>
                   <Input
                     id="name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
+                    className="bg-background/50 border-border/50"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="description">توضیحات</Label>
+                  <Label htmlFor="description" className="text-foreground">توضیحات</Label>
                   <Textarea
                     id="description"
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     required
+                    className="bg-background/50 border-border/50"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="price">قیمت (تومان)</Label>
+                  <Label htmlFor="price" className="text-foreground">قیمت (تومان)</Label>
                   <Input
                     id="price"
                     type="number"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: parseInt(e.target.value) })}
                     required
+                    className="bg-background/50 border-border/50"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="weight">وزن</Label>
+                  <Label htmlFor="weight" className="text-foreground">وزن</Label>
                   <Input
                     id="weight"
                     value={formData.weight}
                     onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
                     placeholder="مثال: 500 گرم"
                     required
+                    className="bg-background/50 border-border/50"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="image">آدرس تصویر</Label>
+                  <Label htmlFor="image" className="text-foreground">آدرس تصویر</Label>
                   <Input
                     id="image"
                     value={formData.image}
                     onChange={(e) => setFormData({ ...formData, image: e.target.value })}
                     placeholder="URL تصویر"
                     required
+                    className="bg-background/50 border-border/50"
                   />
                 </div>
 
@@ -287,7 +292,7 @@ const Admin = () => {
                     )}
                   </Button>
                   {isEditing && (
-                    <Button type="button" variant="outline" onClick={resetForm}>
+                    <Button type="button" variant="outline" onClick={resetForm} className="bg-background/50">
                       انصراف
                     </Button>
                   )}
@@ -298,21 +303,21 @@ const Admin = () => {
 
           {/* Products List */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold">محصولات</h2>
+            <h2 className="text-2xl font-bold text-foreground">محصولات</h2>
             {loading ? (
               <div className="flex justify-center p-8">
-                <Loader2 className="h-8 w-8 animate-spin" />
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
               </div>
             ) : products.length === 0 ? (
-              <Card>
-                <CardContent className="p-8 text-center text-muted-foreground">
+              <Card className="bg-card/40 backdrop-blur-md border-border/30 shadow-xl">
+                <CardContent className="p-8 text-center text-foreground/70">
                   هنوز محصولی اضافه نشده است.
                 </CardContent>
               </Card>
             ) : (
               <div className="space-y-4">
                 {products.map((product) => (
-                  <Card key={product.id} className="animate-slide-up">
+                  <Card key={product.id} className="animate-slide-up bg-card/40 backdrop-blur-md border-border/30 shadow-xl">
                     <CardContent className="p-4">
                       <div className="flex gap-4">
                         <img
@@ -321,15 +326,15 @@ const Admin = () => {
                           className="w-24 h-24 object-cover rounded-lg"
                         />
                         <div className="flex-1">
-                          <h3 className="font-bold text-lg">{product.name}</h3>
-                          <p className="text-sm text-muted-foreground line-clamp-2">
+                          <h3 className="font-bold text-lg text-foreground">{product.name}</h3>
+                          <p className="text-sm text-foreground/70 line-clamp-2">
                             {product.description}
                           </p>
                           <div className="flex items-center gap-4 mt-2">
                             <span className="font-bold text-primary">
                               {product.price.toLocaleString()} تومان
                             </span>
-                            <span className="text-sm text-muted-foreground">
+                            <span className="text-sm text-foreground/70">
                               {product.weight}
                             </span>
                           </div>
@@ -339,6 +344,7 @@ const Admin = () => {
                             size="sm"
                             variant="outline"
                             onClick={() => handleEdit(product)}
+                            className="bg-background/50"
                           >
                             <Edit className="h-4 w-4" />
                           </Button>

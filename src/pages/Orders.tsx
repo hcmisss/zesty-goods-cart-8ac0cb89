@@ -103,22 +103,22 @@ const Orders = () => {
   }
 
   return (
-    <div className="min-h-screen animated-background">
+    <div className="min-h-screen animated-background pb-24">
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
-            <Button variant="ghost" onClick={() => navigate("/")}>
+            <Button variant="ghost" onClick={() => navigate("/")} className="bg-card/30 backdrop-blur-md border-border/30 hover:bg-card/40">
               <ArrowRight className="h-5 w-5 ml-2" />
               بازگشت به فروشگاه
             </Button>
-            <h1 className="text-3xl font-bold">سفارش‌های من</h1>
+            <h1 className="text-3xl font-bold text-foreground">سفارش‌های من</h1>
           </div>
         </div>
 
         {orders.length === 0 ? (
-          <Card className="p-12 text-center">
+          <Card className="p-12 text-center bg-card/40 backdrop-blur-md border-border/30 shadow-xl">
             <Package className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
-            <p className="text-xl text-muted-foreground mb-4">
+            <p className="text-xl text-foreground/70 mb-4">
               شما هنوز سفارشی ثبت نکرده‌اید
             </p>
             <Button onClick={() => navigate("/")}>
@@ -130,14 +130,14 @@ const Orders = () => {
             {orders.map((order) => {
               const statusInfo = getStatusBadge(order.status);
               return (
-                <Card key={order.id}>
+                <Card key={order.id} className="bg-card/40 backdrop-blur-md border-border/30 shadow-xl">
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div>
-                        <CardTitle className="text-xl mb-2">
+                        <CardTitle className="text-xl mb-2 text-foreground">
                           سفارش #{order.id.slice(0, 8)}
                         </CardTitle>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-foreground/60">
                           {new Date(order.created_at).toLocaleDateString("fa-IR", {
                             year: "numeric",
                             month: "long",
@@ -152,40 +152,40 @@ const Orders = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      <div className="grid md:grid-cols-3 gap-4 p-4 bg-muted/50 rounded-lg">
+                      <div className="grid md:grid-cols-3 gap-4 p-4 bg-background/30 rounded-lg border border-border/20">
                         <div>
-                          <p className="text-sm text-muted-foreground mb-1">نام</p>
-                          <p className="font-medium">{order.customer_name}</p>
+                          <p className="text-sm text-foreground/60 mb-1">نام</p>
+                          <p className="font-medium text-foreground">{order.customer_name}</p>
                         </div>
                         <div>
-                          <p className="text-sm text-muted-foreground mb-1">تلفن</p>
-                          <p className="font-medium">{order.customer_phone}</p>
+                          <p className="text-sm text-foreground/60 mb-1">تلفن</p>
+                          <p className="font-medium text-foreground">{order.customer_phone}</p>
                         </div>
                         <div>
-                          <p className="text-sm text-muted-foreground mb-1">آدرس</p>
-                          <p className="font-medium">{order.customer_address}</p>
+                          <p className="text-sm text-foreground/60 mb-1">آدرس</p>
+                          <p className="font-medium text-foreground">{order.customer_address}</p>
                         </div>
                       </div>
 
                       <div>
-                        <h3 className="font-semibold mb-3">اقلام سفارش:</h3>
+                        <h3 className="font-semibold mb-3 text-foreground">اقلام سفارش:</h3>
                         <div className="space-y-2">
                           {order.order_items.map((item) => (
                             <div
                               key={item.id}
-                              className="flex justify-between items-center p-3 bg-background rounded-lg border"
+                              className="flex justify-between items-center p-3 bg-background/50 rounded-lg border border-border/20"
                             >
                               <div className="flex-1">
-                                <p className="font-medium">{item.product_name}</p>
-                                <p className="text-sm text-muted-foreground">
+                                <p className="font-medium text-foreground">{item.product_name}</p>
+                                <p className="text-sm text-foreground/60">
                                   وزن: {item.product_weight}
                                 </p>
                               </div>
                               <div className="text-left">
-                                <p className="text-sm text-muted-foreground">
+                                <p className="text-sm text-foreground/60">
                                   تعداد: {item.quantity}
                                 </p>
-                                <p className="font-medium">
+                                <p className="font-medium text-foreground">
                                   {(item.product_price * item.quantity).toLocaleString("fa-IR")} تومان
                                 </p>
                               </div>
@@ -195,14 +195,14 @@ const Orders = () => {
                       </div>
 
                       {order.notes && (
-                        <div className="p-3 bg-muted/50 rounded-lg">
-                          <p className="text-sm text-muted-foreground mb-1">یادداشت:</p>
-                          <p>{order.notes}</p>
+                        <div className="p-3 bg-background/30 rounded-lg border border-border/20">
+                          <p className="text-sm text-foreground/60 mb-1">یادداشت:</p>
+                          <p className="text-foreground">{order.notes}</p>
                         </div>
                       )}
 
-                      <div className="flex justify-between items-center pt-4 border-t">
-                        <span className="text-lg font-semibold">مجموع:</span>
+                      <div className="flex justify-between items-center pt-4 border-t border-border/20">
+                        <span className="text-lg font-semibold text-foreground">مجموع:</span>
                         <span className="text-2xl font-bold text-primary">
                           {order.total_price.toLocaleString("fa-IR")} تومان
                         </span>

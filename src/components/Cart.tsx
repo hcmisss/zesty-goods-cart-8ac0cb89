@@ -24,16 +24,16 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderS
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent side="left" className="w-full sm:max-w-lg">
+      <SheetContent side="left" className="w-full sm:max-w-lg bg-background/95 backdrop-blur-md">
         <SheetHeader>
-          <SheetTitle className="text-2xl font-bold text-primary">سبد خرید شما</SheetTitle>
+          <SheetTitle className="text-2xl font-bold text-foreground">سبد خرید شما</SheetTitle>
         </SheetHeader>
 
         <div className="mt-8 flex flex-col h-[calc(100%-120px)]">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <div className="text-6xl mb-4">🛒</div>
-              <p className="text-muted-foreground text-lg">سبد خرید شما خالی است</p>
+              <p className="text-foreground/70 text-lg">سبد خرید شما خالی است</p>
             </div>
           ) : (
             <>
@@ -41,7 +41,7 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderS
                 {items.map((item) => (
                   <div 
                     key={item.id} 
-                    className="flex gap-4 p-4 rounded-lg border border-border bg-card"
+                    className="flex gap-4 p-4 rounded-lg border border-border/30 bg-card/40 backdrop-blur-md shadow-md"
                   >
                     <img 
                       src={item.image} 
@@ -50,11 +50,11 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderS
                     />
                     
                     <div className="flex-1">
-                      <h4 className="font-bold text-card-foreground mb-1">{item.name}</h4>
-                      <p className="text-sm text-muted-foreground mb-2">{item.weight}</p>
+                      <h4 className="font-bold text-foreground mb-1">{item.name}</h4>
+                      <p className="text-sm text-foreground/60 mb-2">{item.weight}</p>
                       
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 border border-border rounded-md">
+                        <div className="flex items-center gap-2 border border-border/30 rounded-md bg-background/50">
                           <Button
                             variant="ghost"
                             size="sm"
@@ -63,7 +63,7 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderS
                           >
                             <Minus className="h-4 w-4" />
                           </Button>
-                          <span className="w-8 text-center font-bold">{item.quantity}</span>
+                          <span className="w-8 text-center font-bold text-foreground">{item.quantity}</span>
                           <Button
                             variant="ghost"
                             size="sm"
@@ -89,25 +89,25 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderS
                       <p className="font-bold text-primary">
                         {(item.price * item.quantity).toLocaleString('fa-IR')}
                       </p>
-                      <p className="text-xs text-muted-foreground">تومان</p>
+                      <p className="text-xs text-foreground/60">تومان</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="border-t border-border pt-4 mt-4">
+              <div className="border-t border-border/30 pt-4 mt-4">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-lg font-bold">جمع کل:</span>
+                  <span className="text-lg font-bold text-foreground">جمع کل:</span>
                   <div className="text-left">
                     <span className="text-2xl font-bold text-primary">
                       {total.toLocaleString('fa-IR')}
                     </span>
-                    <span className="text-sm text-muted-foreground mr-2">تومان</span>
+                    <span className="text-sm text-foreground/60 mr-2">تومان</span>
                   </div>
                 </div>
                 
                 <Button 
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 text-lg font-bold"
+                  className="w-full py-6 text-lg font-bold"
                   onClick={() => setIsOrderDialogOpen(true)}
                 >
                   ثبت سفارش

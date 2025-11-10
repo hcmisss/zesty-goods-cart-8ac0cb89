@@ -68,14 +68,14 @@ const ProductDetail = () => {
   if (!product) {
     return null;
   }
-  return <div className="min-h-screen animated-background">
+  return <div className="min-h-screen animated-background pb-24">
       <main className="container mx-auto px-4 py-8">
-        <Button variant="ghost" className="mb-6 bg-card/30 backdrop-blur-md border-border/30 hover:bg-card/40" onClick={() => navigate("/")}>
+        <Button variant="ghost" className="mb-6 bg-card/40 backdrop-blur-md border-border/30 hover:bg-card/50 shadow-lg" onClick={() => navigate("/")}>
           <ArrowRight className="ml-2 h-4 w-4" />
           بازگشت به فروشگاه
         </Button>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12 bg-card/30 backdrop-blur-md border border-border/30 rounded-lg p-6 shadow-xl">
+        <div className="grid md:grid-cols-2 gap-8 mb-12 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg p-6 shadow-xl">
           <div className="animate-fade-in rounded-lg overflow-hidden bg-background/20">
             <img src={product.image} alt={product.name} loading="eager" decoding="async" className="w-full h-[400px] object-cover" />
           </div>
@@ -84,10 +84,10 @@ const ProductDetail = () => {
             <h1 className="text-4xl font-bold text-foreground">{product.name}</h1>
             <p className="text-lg text-foreground/80">{product.description}</p>
             <div className="flex items-center gap-4">
-              <span className="text-3xl font-bold text-lime-500">
-                {product.price.toLocaleString()} تومان
+              <span className="text-3xl font-bold text-primary">
+                {product.price.toLocaleString('fa-IR')} تومان
               </span>
-              <span className="text-lime-800">{product.weight}</span>
+              <span className="text-foreground/70">{product.weight}</span>
             </div>
             <Button size="lg" onClick={addToCart} className="w-full md:w-auto">
               <ShoppingCart className="ml-2 h-5 w-5" />

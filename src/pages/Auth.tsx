@@ -80,10 +80,10 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen animated-background flex items-center justify-center p-4">
-      <Card className="w-full max-w-md animate-scale-in">
+      <Card className="w-full max-w-md animate-scale-in bg-card/40 backdrop-blur-md border-border/30 shadow-xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold">فروشگاه ترشیجات سنتی</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-3xl font-bold text-foreground">ترشی خانگی</CardTitle>
+          <CardDescription className="text-foreground/70">
             {isLogin ? "وارد حساب کاربری خود شوید" : "حساب کاربری جدید ایجاد کنید"}
           </CardDescription>
         </CardHeader>
@@ -91,7 +91,7 @@ const Auth = () => {
           <form onSubmit={handleAuth} className="space-y-4">
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="fullName">نام و نام خانوادگی</Label>
+                <Label htmlFor="fullName" className="text-foreground">نام و نام خانوادگی</Label>
                 <Input
                   id="fullName"
                   type="text"
@@ -99,12 +99,13 @@ const Auth = () => {
                   onChange={(e) => setFullName(e.target.value)}
                   required={!isLogin}
                   placeholder="نام و نام خانوادگی خود را وارد کنید"
+                  className="bg-background/50 border-border/50"
                 />
               </div>
             )}
             
             <div className="space-y-2">
-              <Label htmlFor="email">ایمیل</Label>
+              <Label htmlFor="email" className="text-foreground">ایمیل</Label>
               <Input
                 id="email"
                 type="email"
@@ -112,11 +113,12 @@ const Auth = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="example@email.com"
+                className="bg-background/50 border-border/50"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">رمز عبور</Label>
+              <Label htmlFor="password" className="text-foreground">رمز عبور</Label>
               <Input
                 id="password"
                 type="password"
@@ -125,6 +127,7 @@ const Auth = () => {
                 required
                 placeholder="حداقل 6 کاراکتر"
                 minLength={6}
+                className="bg-background/50 border-border/50"
               />
             </div>
 
@@ -135,7 +138,7 @@ const Auth = () => {
             <Button
               type="button"
               variant="ghost"
-              className="w-full"
+              className="w-full text-foreground/70 hover:text-foreground"
               onClick={() => setIsLogin(!isLogin)}
             >
               {isLogin ? "حساب کاربری ندارید؟ ثبت نام کنید" : "حساب کاربری دارید؟ وارد شوید"}

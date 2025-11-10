@@ -1,24 +1,21 @@
+import heroImage from "@/assets/hero-banner.jpg";
+
 const Hero = () => {
   return (
-    <section id="home" className="relative h-[500px] overflow-hidden">
-      {/* Hero content without separate background - uses global background */}
-      
-      <div className="container relative mx-auto px-4 h-full flex items-center">
-        <div className="max-w-2xl">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white leading-tight drop-shadow-2xl">
-            ترشیجات سنتی
-            <span className="block text-3xl md:text-4xl text-white/95 mt-2">
-              با طعم اصیل خانگی
-            </span>
-          </h2>
-          <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed drop-shadow-lg font-medium">
-            تهیه شده از بهترین مواد اولیه با رعایت اصول بهداشتی
-            <br />
-            ترشی لیته، خیارشور، مخلوط و انواع ترشیجات سنتی
+    <section className="px-4 py-3">
+      <div 
+        className="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[400px]"
+        style={{
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 40%), url(${heroImage})`
+        }}
+      >
+        <div className="flex flex-col p-6 gap-4">
+          <p className="text-white text-[32px] font-bold leading-tight tracking-tight">
+            طعم اصیل ترشی خانگی
           </p>
           <a href="#products">
-            <button className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all hover:shadow-2xl hover:-translate-y-1 hover:scale-105">
-              مشاهده محصولات
+            <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-primary/90 text-white text-base font-bold leading-normal tracking-[0.015em] transition-all">
+              <span className="truncate">مشاهده همه محصولات</span>
             </button>
           </a>
         </div>

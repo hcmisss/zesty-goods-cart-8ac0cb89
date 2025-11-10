@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/Cart";
+import BottomNav from "@/components/BottomNav";
 import { Loader2 } from "lucide-react";
 interface Product {
   id: string;
@@ -89,88 +90,152 @@ const Index = () => {
     setCartItems([]);
     setIsCartOpen(false);
   };
-  return <div className="animated-background min-h-screen">
+  const categories = [
+    { name: "ترشی سبزیجات", image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400" },
+    { name: "ترشی میوه‌جات", image: "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=400" },
+    { name: "ترشی‌های محلی", image: "https://images.unsplash.com/photo-1571681701598-8cd4c584c5e3?w=400" },
+    { name: "شورها", image: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?w=400" },
+  ];
+
+  return <div className="animated-background min-h-screen pb-24">
       <Header cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} onCartClick={() => setIsCartOpen(true)} />
 
       <main>
         <Hero />
 
-        {/* Products Section */}
-        <section id="products" className="py-16 px-4">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12 animate-fade-in text-stone-50">
-              محصولات ما
-            </h2>
-            {loading ? <div className="flex justify-center items-center py-20">
-                <Loader2 className="h-12 w-12 animate-spin text-primary" />
-              </div> : products.length === 0 ? <div className="text-center py-20 text-muted-foreground animate-fade-in">
-                <p className="text-xl">محصولی در حال حاضر موجود نیست.</p>
-              </div> : <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {products.map((product, index) => <div key={product.id} className="animate-slide-up" style={{
-              animationDelay: `${index * 0.1}s`
-            }}>
-                    <ProductCard product={product} onAddToCart={handleAddToCart} />
-                  </div>)}
-              </div>}
+        {/* Best Sellers Section */}
+        <section className="py-4">
+          <h2 className="text-foreground text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3">
+            پرفروش‌ترین‌ها
+          </h2>
+          
+          {loading ? (
+            <div className="flex justify-center items-center py-10">
+              <Loader2 className="h-12 w-12 animate-spin text-primary" />
+            </div>
+          ) : products.length === 0 ? (
+            <div className="text-center py-10 text-muted-foreground px-4">
+              <p className="text-lg">محصولی در حال حاضر موجود نیست.</p>
+            </div>
+          ) : (
+            <div className="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex items-stretch px-4 gap-4">
+                {products.slice(0, 6).map((product) => (
+                  <div key={product.id} className="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-40 w-40">
+                    <div 
+                      className="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg cursor-pointer hover:scale-105 transition-transform"
+                      style={{ backgroundImage: `url(${product.image})` }}
+                      onClick={() => handleAddToCart(product)}
+                    />
+                    <div>
+                      <p className="text-foreground text-base font-medium leading-normal line-clamp-1">
+                        {product.name}
+                      </p>
+                      <p className="text-muted-foreground text-sm font-normal leading-normal">
+                        {product.price.toLocaleString('fa-IR')} تومان
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* Categories Section */}
+        <section className="py-8">
+          <h2 className="text-foreground text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3">
+            دسته‌بندی‌ها
+          </h2>
+          
+          <div className="grid grid-cols-2 gap-4 px-4">
+            {categories.map((category, index) => (
+              <div 
+                key={index}
+                className="relative flex flex-col items-center justify-center rounded-lg aspect-square overflow-hidden bg-cover bg-center cursor-pointer hover:scale-105 transition-transform"
+                style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${category.image})` }}
+              >
+                <p className="relative text-white font-bold text-lg z-10">
+                  {category.name}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
+        {/* All Products Section */}
+        <section id="products" className="py-8 px-4">
+          <h2 className="text-foreground text-[22px] font-bold leading-tight tracking-[-0.015em] mb-6">
+            تمام محصولات
+          </h2>
+          
+          {loading ? (
+            <div className="flex justify-center items-center py-10">
+              <Loader2 className="h-12 w-12 animate-spin text-primary" />
+            </div>
+          ) : products.length === 0 ? (
+            <div className="text-center py-10 text-muted-foreground">
+              <p className="text-lg">محصولی در حال حاضر موجود نیست.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products.map((product) => (
+                <ProductCard 
+                  key={product.id}
+                  product={product} 
+                  onAddToCart={handleAddToCart} 
+                />
+              ))}
+            </div>
+          )}
+        </section>
+
         {/* About Section */}
-        <section id="about" className="py-16 px-4 bg-card/30 backdrop-blur-md border-y border-border/20">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h2 className="text-4xl font-bold mb-8 text-lime-950">درباره ما</h2>
-            <p className="text-lg leading-relaxed text-foreground/90 mb-6">
+        <section id="about" className="py-12 px-4 bg-card/30 backdrop-blur-md border-y border-border/20">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-6 text-foreground">درباره ما</h2>
+            <p className="text-base leading-relaxed text-foreground/90 mb-4">
               فروشگاه ترشیجات سنتی با بیش از ۳۰ سال سابقه، تولید کننده انواع ترشی‌های خانگی و سنتی با کیفیت بالا می‌باشد.
               ما با استفاده از بهترین مواد اولیه و دستور پخت‌های اصیل، طعمی بی‌نظیر را برای شما به ارمغان می‌آوریم.
             </p>
-            <p className="text-lg leading-relaxed text-foreground/90">
+            <p className="text-base leading-relaxed text-foreground/90">
               تمامی محصولات ما با رعایت کامل اصول بهداشتی و استفاده از مواد طبیعی تهیه می‌شوند.
             </p>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-16 px-4">
+        <section id="contact" className="py-12 px-4 mb-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12 animate-fade-in text-green-50">
+            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
               تماس با ما
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="float-animation flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105">
                 <span className="text-4xl mb-4">📞</span>
-                <h3 className="font-bold text-xl mb-2 text-foreground">تلفن</h3>
+                <h3 className="font-bold text-lg mb-2 text-foreground">تلفن</h3>
                 <p className="text-foreground/80 font-medium" dir="ltr">021-12345678</p>
               </div>
               
-              <div className="float-animation flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105" style={{
-              animationDelay: "1s"
-            }}>
+              <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105">
                 <span className="text-4xl mb-4">📧</span>
-                <h3 className="font-bold text-xl mb-2 text-foreground">ایمیل</h3>
+                <h3 className="font-bold text-lg mb-2 text-foreground">ایمیل</h3>
                 <p className="text-foreground/80 font-medium">info@torshijat.com</p>
               </div>
               
-              <div className="float-animation flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105" style={{
-              animationDelay: "2s"
-            }}>
+              <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105">
                 <span className="text-4xl mb-4">📍</span>
-                <h3 className="font-bold text-xl mb-2 text-foreground">آدرس</h3>
+                <h3 className="font-bold text-lg mb-2 text-foreground">آدرس</h3>
                 <p className="text-foreground/80 font-medium">تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
               </div>
             </div>
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="bg-card/30 backdrop-blur-md border-t border-border/30 text-foreground py-8 px-4 shadow-lg">
-          <div className="max-w-7xl mx-auto text-center">
-            <p className="text-lg font-bold mb-2 text-neutral-950">فروشگاه ترشیجات سنتی</p>
-            <p className="text-sm text-muted-foreground">تمامی حقوق محفوظ است © ۱۴۰۳</p>
-          </div>
-        </footer>
       </main>
 
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} items={cartItems} onUpdateQuantity={handleUpdateQuantity} onRemoveItem={handleRemoveItem} onOrderSuccess={handleOrderSuccess} />
+      
+      <BottomNav />
     </div>;
 };
 export default Index;

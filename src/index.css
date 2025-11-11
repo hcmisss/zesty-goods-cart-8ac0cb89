@@ -8,71 +8,65 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 48 20% 97%;
-    --foreground: 142 40% 15%;
+    --background: 18 33% 98%; /* #fcf9f8 */
+    --foreground: 24 63% 8%; /* #1b110d */
 
     --card: 0 0% 100%;
-    --card-foreground: 142 40% 15%;
+    --card-foreground: 24 63% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 142 40% 15%;
+    --popover-foreground: 24 63% 8%;
 
-    --primary: 142 65% 35%;
+    --primary: 14 87% 50%; /* #ec4913 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 80% 55%;
-    --secondary-foreground: 142 40% 15%;
+    --secondary: 14 36% 47%; /* #9a5f4c */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 48 20% 92%;
-    --muted-foreground: 142 20% 45%;
+    --muted: 18 14% 90%; /* #e7d5cf */
+    --muted-foreground: 14 36% 47%;
 
-    --accent: 0 75% 55%;
+    --accent: 68 56% 34%; /* #6B8E23 */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 142 20% 85%;
-    --input: 142 20% 85%;
-    --ring: 142 65% 35%;
+    --border: 18 14% 90%;
+    --input: 18 14% 90%;
+    --ring: 14 87% 50%;
 
-    --radius: 0.75rem;
-
-    /* Custom tokens for pickle shop */
-    --gradient-primary: linear-gradient(135deg, hsl(142 65% 35%), hsl(142 55% 45%));
-    --gradient-hero: linear-gradient(180deg, hsl(48 20% 97%), hsl(142 15% 92%));
-    --shadow-card: 0 4px 20px -4px hsl(142 65% 35% / 0.15);
-    --shadow-hover: 0 8px 30px -6px hsl(142 65% 35% / 0.25);
+    --radius: 0.5rem;
   }
 
   .dark {
-    --background: 142 25% 8%;
-    --foreground: 48 20% 95%;
+    --background: 24 63% 10%; /* #221510 */
+    --foreground: 18 33% 98%;
 
-    --card: 142 20% 12%;
-    --card-foreground: 48 20% 95%;
+    --card: 24 29% 13%; /* #2a1a14 */
+    --card-foreground: 18 33% 98%;
 
-    --popover: 142 20% 12%;
-    --popover-foreground: 48 20% 95%;
+    --popover: 24 29% 13%;
+    --popover-foreground: 18 33% 98%;
 
-    --primary: 142 65% 45%;
-    --primary-foreground: 142 25% 8%;
+    --primary: 14 87% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 70% 50%;
-    --secondary-foreground: 142 25% 8%;
+    --secondary: 14 26% 60%; /* #ab8a80 */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 142 15% 18%;
-    --muted-foreground: 48 10% 65%;
+    --muted: 24 23% 18%; /* #3c2a24 */
+    --muted-foreground: 14 26% 60%;
 
-    --accent: 0 70% 50%;
+    --accent: 68 56% 34%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 142 15% 22%;
-    --input: 142 15% 22%;
-    --ring: 142 65% 45%;
+    --border: 24 23% 18%;
+    --input: 24 23% 18%;
+    --ring: 14 87% 50%;
   }
 }
 

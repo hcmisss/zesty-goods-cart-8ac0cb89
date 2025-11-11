@@ -4,8 +4,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
+import { Flower2, Eye, EyeOff } from "lucide-react";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -13,10 +13,13 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         navigate("/");
       }
@@ -79,73 +82,113 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen animated-background flex items-center justify-center p-4">
-      <Card className="w-full max-w-md animate-scale-in bg-card/40 backdrop-blur-md border-border/30 shadow-xl">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-foreground">ترشی خانگی</CardTitle>
-          <CardDescription className="text-foreground/70">
-            {isLogin ? "وارد حساب کاربری خود شوید" : "حساب کاربری جدید ایجاد کنید"}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleAuth} className="space-y-4">
-            {!isLogin && (
-              <div className="space-y-2">
-                <Label htmlFor="fullName" className="text-foreground">نام و نام خانوادگی</Label>
-                <Input
-                  id="fullName"
-                  type="text"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  required={!isLogin}
-                  placeholder="نام و نام خانوادگی خود را وارد کنید"
-                  className="bg-background/50 border-border/50"
-                />
-              </div>
-            )}
-            
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-foreground">ایمیل</Label>
+    <div className="relative flex min-h-screen w-full flex-col items-center justify-center p-4 bg-background">
+      <div className="w-full max-w-md space-y-6">
+        {/* Logo */}
+        <div className="flex justify-center">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/20">
+            <Flower2 className="h-10 w-10 text-primary" />
+          </div>
+        </div>
+
+        {/* Headline */}
+        <div className="text-center">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">
+            {isLogin ? "ورود به حساب کاربری" : "ایجاد حساب کاربری"}
+          </h1>
+          <p className="mt-2 text-base text-foreground/80">
+            {isLogin
+              ? "برای ادامه وارد حساب کاربری خود شوید"
+              : "برای خرید ترشی‌های خوشمزه ما ثبت نام کنید"}
+          </p>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleAuth} className="space-y-4">
+          {!isLogin && (
+            <div>
+              <Label htmlFor="fullName" className="text-foreground pb-2 block text-sm font-medium">
+                نام و نام خانوادگی
+              </Label>
               <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="example@email.com"
-                className="bg-background/50 border-border/50"
+                id="fullName"
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required={!isLogin}
+                placeholder="نام و نام خانوادگی خود را وارد کنید"
+                className="h-12 bg-background border-muted"
               />
             </div>
+          )}
 
-            <div className="space-y-2">
-              <Label htmlFor="password" className="text-foreground">رمز عبور</Label>
+          <div>
+            <Label htmlFor="email" className="text-foreground pb-2 block text-sm font-medium">
+              ایمیل
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="ایمیل خود را وارد کنید"
+              className="h-12 bg-background border-muted"
+            />
+          </div>
+
+          <div className="relative">
+            <Label htmlFor="password" className="text-foreground pb-2 block text-sm font-medium">
+              رمز عبور
+            </Label>
+            <div className="relative">
               <Input
                 id="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="حداقل 6 کاراکتر"
+                placeholder="رمز عبور خود را وارد کنید"
                 minLength={6}
-                className="bg-background/50 border-border/50"
+                className="h-12 bg-background border-muted pl-10"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute bottom-3 left-3 text-foreground/60"
+              >
+                {showPassword ? <Eye className="h-5 w-5" /> : <EyeOff className="h-5 w-5" />}
+              </button>
             </div>
+          </div>
 
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "لطفا صبر کنید..." : isLogin ? "ورود" : "ثبت نام"}
-            </Button>
+          <Button
+            type="submit"
+            className="w-full h-12 bg-primary text-white font-bold hover:bg-primary/90"
+            disabled={loading}
+          >
+            {loading ? "لطفا صبر کنید..." : isLogin ? "ورود" : "ثبت نام"}
+          </Button>
 
-            <Button
-              type="button"
-              variant="ghost"
-              className="w-full text-foreground/70 hover:text-foreground"
-              onClick={() => setIsLogin(!isLogin)}
-            >
-              {isLogin ? "حساب کاربری ندارید؟ ثبت نام کنید" : "حساب کاربری دارید؟ وارد شوید"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+          {/* Divider */}
+          <div className="flex items-center gap-4">
+            <hr className="flex-grow border-muted" />
+            <p className="text-sm text-foreground/60">یا</p>
+            <hr className="flex-grow border-muted" />
+          </div>
+
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full h-12 border-muted text-foreground hover:bg-muted/20"
+            onClick={() => setIsLogin(!isLogin)}
+          >
+            {isLogin
+              ? "حساب کاربری ندارید؟ ثبت نام کنید"
+              : "حساب کاربری دارید؟ وارد شوید"}
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };

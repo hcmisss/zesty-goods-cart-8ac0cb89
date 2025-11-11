@@ -24,12 +24,12 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderS
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent side="left" className="w-full sm:max-w-lg bg-background/95 backdrop-blur-md">
-        <SheetHeader>
-          <SheetTitle className="text-2xl font-bold text-foreground">سبد خرید شما</SheetTitle>
+      <SheetContent side="left" className="w-full sm:max-w-lg bg-background border-l border-border">
+        <SheetHeader className="border-b border-border pb-2">
+          <SheetTitle className="text-lg font-bold text-foreground text-center">سبد خرید</SheetTitle>
         </SheetHeader>
 
-        <div className="mt-8 flex flex-col h-[calc(100%-120px)]">
+        <div className="flex flex-col h-[calc(100%-80px)]">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <div className="text-6xl mb-4">🛒</div>
@@ -37,81 +37,88 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderS
             </div>
           ) : (
             <>
-              <div className="flex-1 overflow-y-auto space-y-4 pl-2">
+              <div className="flex-1 overflow-y-auto pt-4">
                 {items.map((item) => (
-                  <div 
-                    key={item.id} 
-                    className="flex gap-4 p-4 rounded-lg border border-border/30 bg-card/40 backdrop-blur-md shadow-md"
+                  <div
+                    key={item.id}
+                    className="flex gap-4 bg-background px-4 py-3 justify-between border-b border-border"
                   >
-                    <img 
-                      src={item.image} 
-                      alt={item.name}
-                      className="w-20 h-20 object-cover rounded-md"
-                    />
-                    
-                    <div className="flex-1">
-                      <h4 className="font-bold text-foreground mb-1">{item.name}</h4>
-                      <p className="text-sm text-foreground/60 mb-2">{item.weight}</p>
-                      
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 border border-border/30 rounded-md bg-background/50">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
-                            className="h-8 w-8 p-0"
-                          >
-                            <Minus className="h-4 w-4" />
-                          </Button>
-                          <span className="w-8 text-center font-bold text-foreground">{item.quantity}</span>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                            className="h-8 w-8 p-0"
-                          >
-                            <Plus className="h-4 w-4" />
-                          </Button>
-                        </div>
-                        
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => onRemoveItem(item.id)}
-                          className="text-destructive hover:text-destructive hover:bg-destructive/10"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
+                    <div className="flex items-start gap-4">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="size-[70px] object-cover rounded-lg"
+                      />
+                      <div className="flex flex-1 flex-col justify-center gap-1">
+                        <p className="text-foreground text-base font-medium leading-normal">
+                          {item.name}
+                        </p>
+                        <p className="text-muted-foreground text-sm font-normal leading-normal">
+                          {item.price.toLocaleString('fa-IR')} تومان
+                        </p>
+                        <p className="text-muted-foreground text-sm font-normal leading-normal">
+                          مجموع: {(item.price * item.quantity).toLocaleString('fa-IR')} تومان
+                        </p>
                       </div>
                     </div>
-                    
-                    <div className="text-left">
-                      <p className="font-bold text-primary">
-                        {(item.price * item.quantity).toLocaleString('fa-IR')}
-                      </p>
-                      <p className="text-xs text-foreground/60">تومان</p>
+
+                    <div className="shrink-0">
+                      <div className="flex items-center gap-2 text-foreground">
+                        <button
+                          onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+                          className="text-base font-medium leading-normal flex h-7 w-7 items-center justify-center rounded-full bg-muted cursor-pointer"
+                        >
+                          <Minus className="h-4 w-4" />
+                        </button>
+                        <span className="text-base font-medium leading-normal w-4 p-0 text-center">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                          className="text-base font-medium leading-normal flex h-7 w-7 items-center justify-center rounded-full bg-muted cursor-pointer"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="border-t border-border/30 pt-4 mt-4">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-lg font-bold text-foreground">جمع کل:</span>
-                  <div className="text-left">
-                    <span className="text-2xl font-bold text-primary">
-                      {total.toLocaleString('fa-IR')}
-                    </span>
-                    <span className="text-sm text-foreground/60 mr-2">تومان</span>
+              <div className="sticky bottom-0 bg-background border-t border-border pt-4">
+                <div className="px-4">
+                  <div className="flex justify-between gap-x-6 py-2">
+                    <p className="text-muted-foreground text-sm font-normal leading-normal">
+                      جمع کل محصولات
+                    </p>
+                    <p className="text-foreground text-sm font-normal leading-normal text-right">
+                      {total.toLocaleString('fa-IR')} تومان
+                    </p>
+                  </div>
+                  <div className="flex justify-between gap-x-6 py-2">
+                    <p className="text-muted-foreground text-sm font-normal leading-normal">
+                      هزینه ارسال
+                    </p>
+                    <p className="text-foreground text-sm font-normal leading-normal text-right">
+                      وابسته به آدرس
+                    </p>
+                  </div>
+                  <div className="flex justify-between gap-x-6 py-2 border-t border-dashed border-border mt-2 pt-2">
+                    <p className="text-foreground text-base font-bold leading-normal">مبلغ نهایی</p>
+                    <p className="text-foreground text-base font-bold leading-normal text-right">
+                      {total.toLocaleString('fa-IR')} تومان
+                    </p>
                   </div>
                 </div>
-                
-                <Button 
-                  className="w-full py-6 text-lg font-bold"
-                  onClick={() => setIsOrderDialogOpen(true)}
-                >
-                  ثبت سفارش
-                </Button>
+
+                <div className="flex px-4 py-3 mt-2">
+                  <Button
+                    className="flex-1 h-12 bg-primary text-white font-bold hover:bg-primary/90"
+                    onClick={() => setIsOrderDialogOpen(true)}
+                  >
+                    ادامه و تسویه حساب
+                  </Button>
+                </div>
               </div>
             </>
           )}

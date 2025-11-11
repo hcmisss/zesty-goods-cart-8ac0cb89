@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Loader2, ArrowRight } from "lucide-react";
+import { Loader2, ArrowLeft } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import BottomNav from "@/components/BottomNav";
 
@@ -129,7 +129,7 @@ const Orders = () => {
     <div className="relative min-h-screen w-full flex-col bg-background overflow-x-hidden pb-32">
       <header className="sticky top-0 z-10 flex items-center bg-primary p-4 pb-3 shadow-md">
         <button onClick={() => navigate("/")} className="text-white">
-          <ArrowRight className="h-7 w-7" />
+          <ArrowLeft className="h-7 w-7" />
         </button>
         <h1 className="text-white text-xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-8">
           سفارشات من

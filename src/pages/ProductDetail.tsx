@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Loader2, Heart, Share2, ShoppingCart, Plus, Minus, ArrowRight } from "lucide-react";
+import { Loader2, Heart, Share2, ShoppingCart, Plus, Minus, ArrowLeft } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import ProductReviews from "@/components/ProductReviews";
 
@@ -87,7 +87,7 @@ const ProductDetail = () => {
           onClick={() => navigate("/")}
           className="flex cursor-pointer items-center justify-center rounded-full size-10 bg-transparent text-foreground"
         >
-          <ArrowRight className="h-6 w-6" />
+          <ArrowLeft className="h-6 w-6" />
         </button>
         <h1 className="text-lg font-bold">جزئیات محصول</h1>
         <div className="flex items-center gap-2">

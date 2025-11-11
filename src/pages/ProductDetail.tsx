@@ -21,10 +21,41 @@ const ProductDetail = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     fetchProduct();
+    checkFavorite();
   }, [id]);
+
+  const checkFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    setIsFavorite(favorites.some((f: any) => f.id === id));
+  };
+
+  const toggleFavorite = () => {
+    if (!product) return;
+
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    
+    if (isFavorite) {
+      const updated = favorites.filter((f: any) => f.id !== product.id);
+      localStorage.setItem("favorites", JSON.stringify(updated));
+      setIsFavorite(false);
+      toast({
+        title: "حذف شد",
+        description: "محصول از علاقه‌مندی‌ها حذف شد.",
+      });
+    } else {
+      favorites.push(product);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      setIsFavorite(true);
+      toast({
+        title: "اضافه شد",
+        description: "محصول به علاقه‌مندی‌ها اضافه شد.",
+      });
+    }
+  };
 
   const fetchProduct = async () => {
     try {
@@ -91,8 +122,11 @@ const ProductDetail = () => {
         </button>
         <h1 className="text-lg font-bold">جزئیات محصول</h1>
         <div className="flex items-center gap-2">
-          <button className="flex cursor-pointer items-center justify-center rounded-full size-10 bg-transparent text-foreground">
-            <Heart className="h-5 w-5" />
+          <button 
+            onClick={toggleFavorite}
+            className="flex cursor-pointer items-center justify-center rounded-full size-10 bg-transparent text-foreground"
+          >
+            <Heart className={`h-5 w-5 ${isFavorite ? 'fill-current text-primary' : ''}`} />
           </button>
           <button className="flex cursor-pointer items-center justify-center rounded-full size-10 bg-transparent text-foreground">
             <Share2 className="h-5 w-5" />

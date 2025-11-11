@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Plus, Eye } from "lucide-react";
+import { Heart, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
 
 export interface Product {
   id: string;
@@ -20,13 +21,47 @@ interface ProductCardProps {
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useState(() => {
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    setIsFavorite(favorites.some((f: any) => f.id === product.id));
+  });
+
+  const toggleFavorite = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    
+    if (isFavorite) {
+      const updated = favorites.filter((f: any) => f.id !== product.id);
+      localStorage.setItem("favorites", JSON.stringify(updated));
+      setIsFavorite(false);
+      toast({
+        title: "حذف شد",
+        description: "محصول از علاقه‌مندی‌ها حذف شد.",
+      });
+    } else {
+      favorites.push(product);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      setIsFavorite(true);
+      toast({
+        title: "اضافه شد",
+        description: "محصول به علاقه‌مندی‌ها اضافه شد.",
+      });
+    }
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onAddToCart(product);
+  };
 
   return (
-    <div 
-      className="flex flex-col gap-3 rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-      onClick={() => navigate(`/product/${product.id}`)}
-    >
-      <div className="aspect-square overflow-hidden bg-muted/20 relative rounded-lg">
+    <div className="flex flex-col gap-3 rounded-xl bg-card/50 overflow-hidden group hover:shadow-lg transition-all">
+      <div 
+        className="aspect-square overflow-hidden bg-muted/20 relative cursor-pointer"
+        onClick={() => navigate(`/product/${product.id}`)}
+      >
         {!imageLoaded && (
           <div className="absolute inset-0 animate-pulse bg-muted/50" />
         )}
@@ -36,19 +71,33 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           loading="lazy"
           decoding="async"
           onLoad={() => setImageLoaded(true)}
-          className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${
+          className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         />
+        <button
+          onClick={toggleFavorite}
+          className="absolute top-2 left-2 h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center text-primary shadow-md hover:scale-110 transition-transform"
+        >
+          <Heart className={`h-5 w-5 ${isFavorite ? 'fill-current' : ''}`} />
+        </button>
       </div>
 
-      <div>
-        <p className="text-foreground text-base font-medium leading-normal">
+      <div className="px-3 pb-3 flex flex-col gap-2">
+        <p className="text-foreground text-base font-semibold leading-normal line-clamp-1">
           {product.name}
         </p>
-        <p className="text-muted-foreground text-sm font-normal leading-normal">
-          {product.price.toLocaleString('fa-IR')} تومان
-        </p>
+        <div className="flex justify-between items-center">
+          <p className="text-muted-foreground text-sm font-medium leading-normal">
+            {product.price.toLocaleString('fa-IR')} تومان
+          </p>
+          <button
+            onClick={handleAddToCart}
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white hover:scale-110 transition-transform"
+          >
+            <Plus className="h-5 w-5" />
+          </button>
+        </div>
       </div>
     </div>
   );

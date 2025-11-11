@@ -9,7 +9,7 @@ const BottomNav = () => {
     { icon: Home, label: "خانه", path: "/" },
     { icon: Grid3x3, label: "دسته‌بندی", path: "/categories" },
     { icon: Heart, label: "علاقه‌ها", path: "/favorites" },
-    { icon: User, label: "حساب کاربری", path: "/auth" },
+    { icon: User, label: "پروفایل", path: "/account" },
   ];
 
   return (

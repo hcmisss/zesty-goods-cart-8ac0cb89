@@ -26,6 +26,13 @@ const OrderDialog = ({ isOpen, onClose, items, total, onOrderSuccess }: OrderDia
     notes: "",
   });
 
+  const orderSchema = z.object({
+    name: z.string().trim().min(1, "نام الزامی است").max(100, "نام باید کمتر از 100 کاراکتر باشد"),
+    phone: z.string().regex(/^09\d{9}$/, "شماره تلفن باید با 09 شروع شود و 11 رقم باشد"),
+    address: z.string().trim().min(10, "آدرس باید حداقل 10 کاراکتر باشد").max(500, "آدرس باید کمتر از 500 کاراکتر باشد"),
+    notes: z.string().max(1000, "یادداشت باید کمتر از 1000 کاراکتر باشد").optional(),
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     

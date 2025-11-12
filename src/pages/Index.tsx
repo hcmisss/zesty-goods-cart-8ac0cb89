@@ -231,7 +231,7 @@ const Index = () => {
 
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} items={cartItems} onUpdateQuantity={handleUpdateQuantity} onRemoveItem={handleRemoveItem} onOrderSuccess={handleOrderSuccess} />
       
-      <BottomNav />
+      <BottomNav className="py-0" />
     </div>;
 };
 export default Index;

@@ -8,6 +8,7 @@ import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { CartItem } from "./Cart";
+import { z } from "zod";
 
 interface OrderDialogProps {
   isOpen: boolean;
@@ -35,17 +36,30 @@ const OrderDialog = ({ isOpen, onClose, items, total, onOrderSuccess }: OrderDia
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.phone || !formData.address) {
+    setLoading(true);
+
+    try {
+      // Validate input using zod schema
+      const result = orderSchema.safeParse(formData);
+      if (!result.success) {
+        const firstError = result.error.errors[0];
+        toast({
+          title: "خطای اعتبارسنجی",
+          description: firstError.message,
+          variant: "destructive",
+        });
+        setLoading(false);
+        return;
+      }
+    } catch (validationError: any) {
       toast({
         title: "خطا",
-        description: "لطفا تمام فیلدهای الزامی را پر کنید",
+        description: "لطفا اطلاعات را به درستی وارد کنید",
         variant: "destructive",
       });
+      setLoading(false);
       return;
     }
-
-    setLoading(true);
 
     try {
       const { data: { session } } = await supabase.auth.getSession();

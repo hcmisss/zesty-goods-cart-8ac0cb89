@@ -8,6 +8,7 @@ import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { CartItem } from "./Cart";
+import { z } from "zod";
 
 interface OrderDialogProps {
   isOpen: boolean;
@@ -26,19 +27,39 @@ const OrderDialog = ({ isOpen, onClose, items, total, onOrderSuccess }: OrderDia
     notes: "",
   });
 
+  const orderSchema = z.object({
+    name: z.string().trim().min(1, "نام الزامی است").max(100, "نام باید کمتر از 100 کاراکتر باشد"),
+    phone: z.string().regex(/^09\d{9}$/, "شماره تلفن باید با 09 شروع شود و 11 رقم باشد"),
+    address: z.string().trim().min(10, "آدرس باید حداقل 10 کاراکتر باشد").max(500, "آدرس باید کمتر از 500 کاراکتر باشد"),
+    notes: z.string().max(1000, "یادداشت باید کمتر از 1000 کاراکتر باشد").optional(),
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.phone || !formData.address) {
+    setLoading(true);
+
+    try {
+      // Validate input using zod schema
+      const result = orderSchema.safeParse(formData);
+      if (!result.success) {
+        const firstError = result.error.errors[0];
+        toast({
+          title: "خطای اعتبارسنجی",
+          description: firstError.message,
+          variant: "destructive",
+        });
+        setLoading(false);
+        return;
+      }
+    } catch (validationError: any) {
       toast({
         title: "خطا",
-        description: "لطفا تمام فیلدهای الزامی را پر کنید",
+        description: "لطفا اطلاعات را به درستی وارد کنید",
         variant: "destructive",
       });
+      setLoading(false);
       return;
     }
-
-    setLoading(true);
 
     try {
       const { data: { session } } = await supabase.auth.getSession();

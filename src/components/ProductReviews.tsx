@@ -175,7 +175,7 @@ const ProductReviews = ({ productId }: ProductReviewsProps) => {
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-medium text-foreground">
-                      {review.profiles.full_name || "کاربر"}
+                      {review.profiles?.full_name || "کاربر"}
                     </span>
                     {renderStars(review.rating)}
                   </div>

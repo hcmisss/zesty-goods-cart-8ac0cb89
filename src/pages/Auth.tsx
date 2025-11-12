@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Flower2, Eye, EyeOff } from "lucide-react";
+import { z } from "zod";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -39,6 +40,21 @@ const Auth = () => {
     setLoading(true);
 
     try {
+      // Validate fullName if signing up
+      if (!isLogin) {
+        const nameSchema = z.string().trim().min(1, "نام الزامی است").max(100, "نام باید کمتر از 100 کاراکتر باشد");
+        const result = nameSchema.safeParse(fullName);
+        if (!result.success) {
+          toast({
+            title: "خطای اعتبارسنجی",
+            description: result.error.errors[0].message,
+            variant: "destructive",
+          });
+          setLoading(false);
+          return;
+        }
+      }
+
       if (isLogin) {
         const { error } = await supabase.auth.signInWithPassword({
           email,

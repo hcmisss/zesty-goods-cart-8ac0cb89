@@ -126,12 +126,12 @@ const Orders = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex-col bg-background overflow-x-hidden pb-32">
-      <header className="sticky top-0 z-10 flex items-center bg-primary p-4 pb-3 shadow-md">
-        <button onClick={() => navigate("/")} className="text-white">
+    <div className="relative min-h-screen w-full flex-col overflow-x-hidden pb-32">
+      <header className="sticky top-0 z-10 flex items-center bg-background/70 backdrop-blur-lg p-4 pb-3 border-b border-border/50">
+        <button onClick={() => navigate("/")} className="text-foreground">
           <ArrowLeft className="h-7 w-7" />
         </button>
-        <h1 className="text-white text-xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-8">
+        <h1 className="text-foreground text-xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-8">
           سفارشات من
         </h1>
       </header>
@@ -155,7 +155,7 @@ const Orders = () => {
           orders.map((order) => (
             <div
               key={order.id}
-              className="flex flex-col items-stretch justify-start rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] bg-card p-4 space-y-4"
+              className="flex flex-col items-stretch justify-start rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] bg-card/70 backdrop-blur-lg border border-border/50 p-4 space-y-4"
             >
               <div className="flex justify-between items-center">
                 <p className="text-foreground text-base font-semibold">

@@ -21,9 +21,16 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
+    // بازیابی از localStorage در هنگام بارگذاری
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
       if (session?.user) {
+        setUser(session.user);
+        localStorage.setItem("user", JSON.stringify(session.user));
         checkAdminRole(session.user.id);
       }
     });
@@ -31,11 +38,14 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
       if (session?.user) {
+        setUser(session.user);
+        localStorage.setItem("user", JSON.stringify(session.user));
         checkAdminRole(session.user.id);
       } else {
+        setUser(null);
         setIsAdmin(false);
+        localStorage.removeItem("user");
       }
     });
 
@@ -54,12 +64,13 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
   };
 
   const handleLogout = async () => {
+    localStorage.removeItem("user");
     await supabase.auth.signOut();
     navigate("/");
   };
 
   return (
-    <div className="flex items-center bg-background p-4 pb-2 justify-between sticky top-0 z-10 border-b border-border">
+    <div className="flex items-center bg-background/70 backdrop-blur-lg p-4 pb-2 justify-between sticky top-0 z-10 border-b border-border/50">
       <button 
         onClick={() => navigate("/search")}
         className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-foreground gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 w-12"

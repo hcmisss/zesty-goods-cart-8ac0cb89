@@ -24,7 +24,7 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderS
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent side="left" className="w-full sm:max-w-lg bg-background border-l border-border">
+      <SheetContent side="left" className="w-full sm:max-w-lg bg-background/70 backdrop-blur-lg border-l border-border/50">
         <SheetHeader className="border-b border-border pb-2">
           <SheetTitle className="text-lg font-bold text-foreground text-center">سبد خرید</SheetTitle>
         </SheetHeader>
@@ -41,7 +41,7 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderS
                 {items.map((item) => (
                   <div
                     key={item.id}
-                    className="flex gap-4 bg-background px-4 py-3 justify-between border-b border-border"
+                    className="flex gap-4 bg-card/50 backdrop-blur-sm px-4 py-3 justify-between border-b border-border/50 rounded-lg mb-2"
                   >
                     <div className="flex items-start gap-4">
                       <img
@@ -85,7 +85,7 @@ const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem, onOrderS
                 ))}
               </div>
 
-              <div className="sticky bottom-0 bg-background border-t border-border pt-4">
+              <div className="sticky bottom-0 bg-background/80 backdrop-blur-lg border-t border-border/50 pt-4">
                 <div className="px-4">
                   <div className="flex justify-between gap-x-6 py-2">
                     <p className="text-muted-foreground text-sm font-normal leading-normal">

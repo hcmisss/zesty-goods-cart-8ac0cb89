@@ -83,9 +83,9 @@ const Account = () => {
   }
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col bg-background overflow-x-hidden pb-24">
+    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-24">
       {/* Top App Bar */}
-      <header className="sticky top-0 z-10 flex items-center bg-background/80 backdrop-blur-sm p-4 pb-3 border-b border-border">
+      <header className="sticky top-0 z-10 flex items-center bg-background/70 backdrop-blur-lg p-4 pb-3 border-b border-border/50">
         <button
           onClick={() => navigate("/")}
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-foreground"
@@ -101,7 +101,7 @@ const Account = () => {
       {/* Main Content */}
       <main className="flex-1 p-4">
         {/* Profile Card */}
-        <div className="bg-card rounded-xl p-6 shadow-sm mb-6">
+        <div className="bg-card/70 backdrop-blur-lg rounded-xl p-6 shadow-sm mb-6 border border-border/50">
           <div className="flex items-center gap-4 mb-6">
             <div className="h-20 w-20 rounded-full bg-primary/20 flex items-center justify-center">
               <User className="h-10 w-10 text-primary" />
@@ -163,7 +163,7 @@ const Account = () => {
         <div className="space-y-2">
           <button
             onClick={() => navigate("/orders")}
-            className="w-full flex items-center gap-4 p-4 rounded-xl bg-card hover:bg-accent transition-colors"
+            className="w-full flex items-center gap-4 p-4 rounded-xl bg-card/70 backdrop-blur-lg border border-border/50 hover:bg-accent/50 transition-colors"
           >
             <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center">
               <Package className="h-6 w-6 text-primary" />
@@ -177,7 +177,7 @@ const Account = () => {
 
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-4 p-4 rounded-xl bg-card hover:bg-destructive/10 transition-colors"
+            className="w-full flex items-center gap-4 p-4 rounded-xl bg-card/70 backdrop-blur-lg border border-border/50 hover:bg-destructive/10 transition-colors"
           >
             <div className="h-12 w-12 rounded-full bg-destructive/20 flex items-center justify-center">
               <LogOut className="h-6 w-6 text-destructive" />

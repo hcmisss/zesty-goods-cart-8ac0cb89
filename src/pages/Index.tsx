@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/Cart";
 import BottomNav from "@/components/BottomNav";
-import { Loader2 } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 interface Product {
   id: string;
   name: string;
@@ -19,13 +20,22 @@ interface CartItem extends Product {
   quantity: number;
 }
 const Index = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
   const fetchProducts = async () => {
     try {
       const {
@@ -121,19 +131,30 @@ const Index = () => {
             <div className="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <div className="flex items-stretch px-4 gap-4">
                 {products.slice(0, 6).map((product) => (
-                  <div key={product.id} className="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-40 w-40">
+                  <div key={product.id} className="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-40 w-40 bg-card/50 backdrop-blur-sm p-2">
                     <div 
                       className="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg cursor-pointer hover:scale-105 transition-transform"
                       style={{ backgroundImage: `url(${product.image})` }}
-                      onClick={() => handleAddToCart(product)}
+                      onClick={() => navigate(`/product/${product.id}`)}
                     />
-                    <div>
+                    <div className="flex flex-col gap-1">
                       <p className="text-foreground text-base font-medium leading-normal line-clamp-1">
                         {product.name}
                       </p>
-                      <p className="text-muted-foreground text-sm font-normal leading-normal">
-                        {product.price.toLocaleString('fa-IR')} تومان
-                      </p>
+                      <div className="flex justify-between items-center">
+                        <p className="text-muted-foreground text-sm font-normal leading-normal">
+                          {product.price.toLocaleString('fa-IR')} تومان
+                        </p>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddToCart(product);
+                          }}
+                          className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white hover:scale-110 transition-transform"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}

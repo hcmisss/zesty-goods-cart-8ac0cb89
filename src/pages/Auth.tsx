@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { Flower2, Eye, EyeOff } from "lucide-react";
+import { Flower2, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { z } from "zod";
 
 const Auth = () => {
@@ -100,6 +100,15 @@ const Auth = () => {
   return (
     <div className="relative flex min-h-screen w-full flex-col items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6 bg-background/70 backdrop-blur-lg p-8 rounded-2xl border border-border/50 shadow-xl">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate("/")}
+          className="flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors mb-4"
+        >
+          <ArrowRight className="h-5 w-5" />
+          <span>بازگشت به صفحه اصلی</span>
+        </button>
+
         {/* Logo */}
         <div className="flex justify-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/20">

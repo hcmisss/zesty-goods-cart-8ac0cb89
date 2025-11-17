@@ -77,7 +77,7 @@ All colors MUST be HSL.
 
   body {
     @apply text-foreground;
-    font-family: 'Vazir', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Kalameh', 'Vazir', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     direction: rtl;
     position: relative;
     min-height: 100vh;
@@ -104,7 +104,38 @@ All colors MUST be HSL.
   }
 }
 
-@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
+/* Kalameh font */
+@font-face {
+  font-family: 'Kalameh';
+  src: url('/fonts/Kalameh-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kalameh';
+  src: url('/fonts/Kalameh-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kalameh';
+  src: url('/fonts/Kalameh-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kalameh';
+  src: url('/fonts/Kalameh-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 @keyframes float {
   0%, 100% { transform: translateY(0px) translateX(0px); }

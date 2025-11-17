@@ -1,5 +1,9 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Search } from "lucide-react";
+import Header from "@/components/Header";
+import BottomNav from "@/components/BottomNav";
+import Cart from "@/components/Cart";
+import { CartItem } from "@/components/Cart";
 
 interface Category {
   id: string;
@@ -49,54 +53,54 @@ const categories: Category[] = [
 
 const Categories = () => {
   const navigate = useNavigate();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const handleUpdateQuantity = (id: string, newQuantity: number) => {
+    if (newQuantity === 0) {
+      setCartItems(cartItems.filter(item => item.id !== id));
+    } else {
+      setCartItems(cartItems.map(item => 
+        item.id === id ? { ...item, quantity: newQuantity } : item
+      ));
+    }
+  };
+
+  const handleRemoveItem = (id: string) => {
+    setCartItems(cartItems.filter(item => item.id !== id));
+  };
+
+  const handleOrderSuccess = () => {
+    setCartItems([]);
+  };
 
   return (
-    <div className="flex h-screen w-full flex-col bg-background">
-      {/* Top App Bar */}
-      <header className="sticky top-0 z-10 flex items-center bg-background/80 backdrop-blur-sm p-4 pb-3">
-        <div className="flex size-12 shrink-0 items-center justify-start">
-          <button
-            onClick={() => navigate("/")}
-            className="flex items-center justify-center p-2 text-foreground"
-          >
-            <ArrowLeft className="h-6 w-6" />
-          </button>
-        </div>
-        <h1 className="flex-1 text-center text-lg font-bold text-foreground">
-          دسته‌بندی‌ها
-        </h1>
-        <div className="flex size-12 shrink-0 items-center justify-end">
-          <button
-            onClick={() => navigate("/search")}
-            className="flex items-center justify-center p-2 text-foreground"
-          >
-            <Search className="h-6 w-6" />
-          </button>
-        </div>
-      </header>
+    <div className="animated-background min-h-screen pb-24">
+      <Header 
+        cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} 
+        onCartClick={() => setIsCartOpen(true)} 
+      />
 
-      {/* Main Content: Image Grid */}
-      <main className="flex-1 overflow-y-auto pb-24">
-        <div className="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3 md:grid-cols-4">
+      <main className="flex-1 overflow-y-auto p-4">
+        <h2 className="text-2xl font-bold text-foreground mb-6 text-center">دسته‌بندی‌ها</h2>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
           {categories.map((category) => (
             <div
               key={category.id}
-              className="group flex flex-col gap-3 rounded-xl cursor-pointer active:opacity-80"
-              onClick={() => navigate("/")}
+              className="group cursor-pointer overflow-hidden rounded-2xl bg-card/70 backdrop-blur-sm border border-border/50 shadow-lg transition-all hover:scale-105"
             >
-              <div className="w-full overflow-hidden rounded-xl bg-muted">
+              <div className="relative aspect-square overflow-hidden">
                 <img
-                  className="h-auto w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
                   src={category.image}
                   alt={category.name}
-                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform group-hover:scale-110"
                 />
               </div>
-              <div>
-                <p className="text-base font-medium text-foreground">
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-foreground">
                   {category.name}
-                </p>
-                <p className="text-sm font-normal text-muted-foreground">
+                </h3>
+                <p className="mt-1 text-sm text-foreground/70">
                   {category.description}
                 </p>
               </div>
@@ -105,37 +109,16 @@ const Categories = () => {
         </div>
       </main>
 
-      {/* Bottom Navigation */}
-      <nav className="sticky bottom-0 z-10 flex h-16 border-t border-border bg-background">
-        <button
-          onClick={() => navigate("/")}
-          className="flex flex-1 flex-col items-center justify-center gap-1 text-muted-foreground"
-        >
-          <span className="text-2xl">🏠</span>
-          <p className="text-xs font-medium">خانه</p>
-        </button>
-        <button
-          onClick={() => navigate("/categories")}
-          className="flex flex-1 flex-col items-center justify-center gap-1 text-primary"
-        >
-          <span className="text-2xl">🏷️</span>
-          <p className="text-xs font-bold">دسته‌بندی</p>
-        </button>
-        <button
-          onClick={() => navigate("/favorites")}
-          className="flex flex-1 flex-col items-center justify-center gap-1 text-muted-foreground"
-        >
-          <span className="text-2xl">❤️</span>
-          <p className="text-xs font-medium">علاقه‌ها</p>
-        </button>
-        <button
-          onClick={() => navigate("/account")}
-          className="flex flex-1 flex-col items-center justify-center gap-1 text-muted-foreground"
-        >
-          <span className="text-2xl">👤</span>
-          <p className="text-xs font-medium">پروفایل</p>
-        </button>
-      </nav>
+      <Cart 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)} 
+        items={cartItems} 
+        onUpdateQuantity={handleUpdateQuantity} 
+        onRemoveItem={handleRemoveItem}
+        onOrderSuccess={handleOrderSuccess}
+      />
+      
+      <BottomNav />
     </div>
   );
 };

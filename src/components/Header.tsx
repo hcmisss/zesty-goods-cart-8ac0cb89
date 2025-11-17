@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { ShoppingCart, Search } from "lucide-react";
+import logo from "@/assets/logo.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -78,9 +79,12 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
         <Search className="h-5 w-5" />
       </button>
       
-      <h1 className="text-foreground text-xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
-        ترشی خانگی
-      </h1>
+      <div className="flex items-center gap-3 flex-1 justify-center">
+        <img src={logo} alt="ترشی حکیمی" className="h-12 w-12 object-contain" />
+        <h1 className="text-foreground text-xl font-bold leading-tight tracking-[-0.015em]">
+          ترشی خانگی حکیمی
+        </h1>
+      </div>
       
       <div className="flex items-center gap-2">
         <button

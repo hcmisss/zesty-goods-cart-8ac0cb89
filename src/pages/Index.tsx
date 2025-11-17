@@ -112,7 +112,7 @@ const Index = () => {
     image: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?w=400"
   }];
   return <div className="animated-background min-h-screen pb-24">
-      <Header cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} onCartClick={() => setIsCartOpen(true)} className="py-0" />
+      <Header cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} onCartClick={() => setIsCartOpen(true)} />
 
       <main>
         <Hero />
@@ -231,7 +231,7 @@ const Index = () => {
 
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} items={cartItems} onUpdateQuantity={handleUpdateQuantity} onRemoveItem={handleRemoveItem} onOrderSuccess={handleOrderSuccess} />
       
-      <BottomNav className="py-0" />
+      <BottomNav />
     </div>;
 };
 export default Index;

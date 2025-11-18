@@ -156,7 +156,7 @@ const Index = () => {
 
         {/* Categories Section */}
         <section className="py-8">
-          <h2 className="text-foreground text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3">
+          <h2 className="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 text-stone-50">
             دسته‌بندی‌ها
           </h2>
           
@@ -173,7 +173,7 @@ const Index = () => {
 
         {/* All Products Section */}
         <section id="products" className="py-8 px-4">
-          <h2 className="text-foreground text-[22px] font-bold leading-tight tracking-[-0.015em] mb-6">
+          <h2 className="text-[22px] font-bold leading-tight tracking-[-0.015em] mb-6 text-stone-50">
             تمام محصولات
           </h2>
           
@@ -189,7 +189,7 @@ const Index = () => {
         {/* About Section */}
         <section id="about" className="py-12 px-4 bg-card/30 backdrop-blur-md border-y border-border/20">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6 text-foreground">درباره ما</h2>
+            <h2 className="text-3xl font-bold mb-6 text-slate-50">درباره ما</h2>
             <p className="text-base leading-relaxed text-foreground/90 mb-4">
               فروشگاه ترشیجات سنتی با بیش از ۳۰ سال سابقه، تولید کننده انواع ترشی‌های خانگی و سنتی با کیفیت بالا می‌باشد.
               ما با استفاده از بهترین مواد اولیه و دستور پخت‌های اصیل، طعمی بی‌نظیر را برای شما به ارمغان می‌آوریم.
@@ -203,7 +203,7 @@ const Index = () => {
         {/* Contact Section */}
         <section id="contact" className="py-12 px-4 mb-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
+            <h2 className="text-3xl font-bold text-center mb-8 text-slate-50">
               تماس با ما
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

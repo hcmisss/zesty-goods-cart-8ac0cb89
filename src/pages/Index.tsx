@@ -8,6 +8,7 @@ import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/Cart";
 import BottomNav from "@/components/BottomNav";
 import { Loader2, Plus } from "lucide-react";
+import categoryLocalPickles from "@/assets/category-local-pickles.jpg";
 interface Product {
   id: string;
   name: string;
@@ -108,7 +109,7 @@ const Index = () => {
     path: "/categories"
   }, {
     name: "ترشی‌های محلی",
-    image: require("@/assets/category-local-pickles.jpg"),
+    image: categoryLocalPickles,
     path: "/categories"
   }, {
     name: "شورها",

@@ -90,7 +90,9 @@ All colors MUST be HSL.
     background-image: url('/src/assets/pickles-background.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-repeat: no-repeat;
+    will-change: auto;
+    transform: translateZ(0);
     z-index: -2;
   }
   
@@ -100,6 +102,8 @@ All colors MUST be HSL.
     inset: 0;
     backdrop-filter: blur(12px);
     background-color: rgba(0, 0, 0, 0.45);
+    will-change: auto;
+    transform: translateZ(0);
     z-index: -1;
   }
 }

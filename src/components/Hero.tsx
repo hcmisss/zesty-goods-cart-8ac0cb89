@@ -10,9 +10,9 @@ const Hero = () => {
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60" />
-        <div className="relative flex flex-col items-center p-6 gap-4 mx-4 mb-4 bg-background/20 backdrop-blur-md rounded-xl border border-white/20 shadow-2xl">
+        <div className="relative flex flex-col items-center p-6 gap-4 mx-4 mb-4">
           <p 
-            className="text-white text-3xl font-bold leading-tight tracking-tight text-center"
+            className="text-white text-3xl font-bold leading-tight tracking-tight text-center drop-shadow-lg"
             style={{ fontFamily: 'YekanBakh, Kalameh, sans-serif' }}
           >
             طعم اصیل ترشی خانگی

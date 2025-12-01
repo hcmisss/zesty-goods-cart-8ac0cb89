@@ -158,13 +158,7 @@ All colors MUST be HSL.
 }
 
 .animated-background {
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url('/src/assets/pickles-background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  position: relative;
   min-height: 100vh;
 }
 

@@ -111,9 +111,9 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="relative flex h-auto min-h-screen w-full flex-col bg-background overflow-x-hidden">
+    <div className="relative flex h-auto min-h-screen w-full flex-col animated-background overflow-x-hidden">
       {/* Top App Bar */}
-      <header className="sticky top-0 z-10 flex items-center bg-background/80 backdrop-blur-sm p-4 justify-between border-b border-border">
+      <header className="sticky top-0 z-10 flex items-center bg-background/70 backdrop-blur-lg px-3 py-2 justify-between border-b border-border/50">
         <button
           onClick={() => navigate("/")}
           className="flex cursor-pointer items-center justify-center rounded-full size-10 bg-transparent text-foreground"
@@ -154,7 +154,7 @@ const ProductDetail = () => {
         </div>
 
         {/* Product Info */}
-        <div className="px-4 pt-4 pb-2">
+        <div className="mx-4 mt-4 mb-2 p-4 bg-background/40 backdrop-blur-md border border-border/30 rounded-xl">
           <h1 className="text-3xl font-bold leading-tight tracking-tight">
             {product.name}
           </h1>
@@ -178,7 +178,7 @@ const ProductDetail = () => {
       </main>
 
       {/* Sticky Add to Cart Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 z-10 bg-background/80 backdrop-blur-sm p-4 border-t border-border">
+      <footer className="fixed bottom-0 left-0 right-0 z-10 bg-background/70 backdrop-blur-lg p-4 border-t border-border/50">
         <div className="flex items-center gap-4">
           <div className="flex-1">
             <button

@@ -61,22 +61,22 @@ const Header = ({
     await supabase.auth.signOut();
     navigate("/");
   };
-  return <div className="flex items-center bg-background/70 backdrop-blur-lg p-4 pb-2 justify-between sticky top-0 z-10 border-b border-border/50">
-      <button onClick={() => navigate("/search")} className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-foreground gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 w-12">
+  return <div className="flex items-center bg-background/70 backdrop-blur-lg px-3 py-2 justify-between sticky top-0 z-10 border-b border-border/50">
+      <button onClick={() => navigate("/search")} className="flex cursor-pointer items-center justify-center rounded-lg h-10 bg-transparent text-foreground min-w-0 p-0 w-10">
         <Search className="h-5 w-5" />
       </button>
       
-      <div className="flex items-center gap-3 flex-1 justify-center">
-        
-        <h1 className="text-foreground leading-tight tracking-[-0.015em] font-bold text-2xl">
+      <div className="flex items-center gap-2 flex-1 justify-center">
+        <img src={logo} alt="لوگو" className="h-8 w-8 object-contain" />
+        <h1 className="text-foreground leading-tight font-bold text-lg" style={{ fontFamily: 'YekanBakh, Kalameh, sans-serif' }}>
           ترشی خانگی حکیمی
         </h1>
       </div>
       
       <div className="flex items-center gap-2">
-        <button onClick={onCartClick} className="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-foreground gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 w-12">
+        <button onClick={onCartClick} className="relative flex cursor-pointer items-center justify-center rounded-lg h-10 bg-transparent text-foreground min-w-0 p-0 w-10">
           <ShoppingCart className="h-5 w-5" />
-          {cartItemCount > 0 && <span className="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white text-xs font-bold">
+          {cartItemCount > 0 && <span className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white text-xs font-bold">
               {cartItemCount > 9 ? '۹+' : cartItemCount.toLocaleString('fa-IR')}
             </span>}
         </button>

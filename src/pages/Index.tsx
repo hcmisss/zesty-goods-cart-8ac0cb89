@@ -100,18 +100,22 @@ const Index = () => {
   };
   const categories = [{
     name: "ترشی سبزیجات",
-    image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400"
+    image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400",
+    path: "/categories"
   }, {
     name: "ترشی میوه‌جات",
-    image: "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=400"
+    image: "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=400",
+    path: "/categories"
   }, {
     name: "ترشی‌های محلی",
-    image: "https://images.unsplash.com/photo-1571681701598-8cd4c584c5e3?w=400"
+    image: require("@/assets/category-local-pickles.jpg"),
+    path: "/categories"
   }, {
     name: "شورها",
-    image: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?w=400"
+    image: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?w=400",
+    path: "/categories"
   }];
-  return <div className="animated-background min-h-screen pb-24">
+  return <div className="animated-background min-h-screen pb-20">
       <Header cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} onCartClick={() => setIsCartOpen(true)} />
 
       <main>
@@ -161,13 +165,20 @@ const Index = () => {
           </h2>
           
           <div className="grid grid-cols-2 gap-4 px-4">
-            {categories.map((category, index) => <div key={index} className="relative flex flex-col items-center justify-center rounded-lg aspect-square overflow-hidden bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${category.image})`
-          }}>
+            {categories.map((category, index) => (
+              <div 
+                key={index} 
+                onClick={() => navigate(category.path)}
+                className="relative flex flex-col items-center justify-center rounded-lg aspect-square overflow-hidden bg-cover bg-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl" 
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${category.image})`
+                }}
+              >
                 <p className="relative text-white font-bold text-lg z-10">
                   {category.name}
                 </p>
-              </div>)}
+              </div>
+            ))}
           </div>
         </section>
 

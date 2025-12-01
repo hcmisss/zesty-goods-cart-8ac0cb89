@@ -61,7 +61,7 @@ const Categories = () => {
   const handleOrderSuccess = () => {
     setCartItems([]);
   };
-  return <div className="animated-background min-h-screen pb-24">
+  return <div className="animated-background min-h-screen pb-20">
       <Header cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} onCartClick={() => setIsCartOpen(true)} />
 
       <main className="flex-1 overflow-y-auto p-4">

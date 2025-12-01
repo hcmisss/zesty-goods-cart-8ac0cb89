@@ -57,7 +57,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl bg-card/50 overflow-hidden group hover:shadow-lg transition-all">
+    <div className="flex flex-col gap-3 rounded-xl bg-background/40 backdrop-blur-md border border-border/30 overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
       <div 
         className="aspect-square overflow-hidden bg-muted/20 relative cursor-pointer"
         onClick={() => navigate(`/product/${product.id}`)}

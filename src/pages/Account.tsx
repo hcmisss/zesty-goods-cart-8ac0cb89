@@ -4,13 +4,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, User, Package, LogOut, Edit } from "lucide-react";
+import { ArrowLeft, User, Package, LogOut, Edit, ShieldCheck } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 const Account = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [fullName, setFullName] = useState("");
   const [loading, setLoading] = useState(true);
@@ -29,7 +30,19 @@ const Account = () => {
 
     setUser(session.user);
     await fetchProfile(session.user.id);
+    await checkAdminRole(session.user.id);
     setLoading(false);
+  };
+
+  const checkAdminRole = async (userId: string) => {
+    const { data } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId)
+      .eq("role", "admin")
+      .single();
+    
+    setIsAdmin(!!data);
   };
 
   const fetchProfile = async (userId: string) => {
@@ -83,9 +96,9 @@ const Account = () => {
   }
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-24">
+    <div className="relative flex min-h-screen w-full flex-col animated-background overflow-x-hidden pb-20">
       {/* Top App Bar */}
-      <header className="sticky top-0 z-10 flex items-center bg-background/70 backdrop-blur-lg p-4 pb-3 border-b border-border/50">
+      <header className="sticky top-0 z-10 flex items-center bg-background/70 backdrop-blur-lg px-3 py-2 border-b border-border/50">
         <button
           onClick={() => navigate("/")}
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-foreground"
@@ -101,7 +114,7 @@ const Account = () => {
       {/* Main Content */}
       <main className="flex-1 p-4">
         {/* Profile Card */}
-        <div className="bg-card/70 backdrop-blur-lg rounded-xl p-6 shadow-sm mb-6 border border-border/50">
+        <div className="bg-card/40 backdrop-blur-md border border-border/30 rounded-xl p-6 shadow-lg mb-6">
           <div className="flex items-center gap-4 mb-6">
             <div className="h-20 w-20 rounded-full bg-primary/20 flex items-center justify-center">
               <User className="h-10 w-10 text-primary" />
@@ -161,9 +174,25 @@ const Account = () => {
 
         {/* Menu Items */}
         <div className="space-y-2">
+          {isAdmin && (
+            <button
+              onClick={() => navigate("/admin")}
+              className="w-full flex items-center gap-4 p-4 rounded-xl bg-card/40 backdrop-blur-md border border-border/30 hover:bg-accent/50 transition-all duration-300 hover:scale-[1.02]"
+            >
+              <div className="h-12 w-12 rounded-full bg-accent/20 flex items-center justify-center">
+                <ShieldCheck className="h-6 w-6 text-accent" />
+              </div>
+              <div className="flex-1 text-right">
+                <p className="font-medium text-foreground">پنل مدیریت</p>
+                <p className="text-sm text-muted-foreground">مدیریت محصولات و سفارشات</p>
+              </div>
+              <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
+            </button>
+          )}
+          
           <button
             onClick={() => navigate("/orders")}
-            className="w-full flex items-center gap-4 p-4 rounded-xl bg-card/70 backdrop-blur-lg border border-border/50 hover:bg-accent/50 transition-colors"
+            className="w-full flex items-center gap-4 p-4 rounded-xl bg-card/40 backdrop-blur-md border border-border/30 hover:bg-accent/50 transition-all duration-300 hover:scale-[1.02]"
           >
             <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center">
               <Package className="h-6 w-6 text-primary" />
@@ -177,7 +206,7 @@ const Account = () => {
 
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-4 p-4 rounded-xl bg-card/70 backdrop-blur-lg border border-border/50 hover:bg-destructive/10 transition-colors"
+            className="w-full flex items-center gap-4 p-4 rounded-xl bg-card/40 backdrop-blur-md border border-border/30 hover:bg-destructive/10 transition-all duration-300 hover:scale-[1.02]"
           >
             <div className="h-12 w-12 rounded-full bg-destructive/20 flex items-center justify-center">
               <LogOut className="h-6 w-6 text-destructive" />

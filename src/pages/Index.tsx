@@ -128,7 +128,7 @@ const Index = () => {
 
         {/* Best Sellers Section */}
         <section className="py-4">
-          <h2 className="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 text-slate-50">
+          <h2 className="text-[22px] leading-tight tracking-[-0.015em] px-4 pb-3 text-slate-50 font-extrabold">
             پرفروش‌ترین‌ها
           </h2>
           
@@ -143,7 +143,7 @@ const Index = () => {
                 backgroundImage: `url(${product.image})`
               }} onClick={() => navigate(`/product/${product.id}`)} />
                     <div className="flex flex-col gap-1">
-                      <p className="text-foreground leading-normal line-clamp-1 font-semibold text-base">
+                      <p className="text-foreground leading-normal line-clamp-1 text-base font-bold">
                         {product.name}
                       </p>
                       <div className="flex justify-between items-center">

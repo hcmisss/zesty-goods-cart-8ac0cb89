@@ -268,7 +268,7 @@ const Admin = () => {
                       <div className="flex gap-4">
                         <img src={product.image} alt={product.name} className="w-24 h-24 object-cover rounded-lg" />
                         <div className="flex-1">
-                          <h3 className="font-bold text-lg text-foreground">{product.name}</h3>
+                          <h3 className="text-lg text-foreground font-extrabold">{product.name}</h3>
                           <p className="text-sm text-foreground/70 line-clamp-2">
                             {product.description}
                           </p>

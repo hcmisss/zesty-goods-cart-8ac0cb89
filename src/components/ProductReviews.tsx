@@ -133,12 +133,12 @@ const ProductReviews = ({
             </p> : <div className="space-y-4">
               {reviews.map(review => <div key={review.id} className="p-4 bg-background/30 backdrop-blur-sm border border-border/20 rounded-lg space-y-2 animate-slide-up shadow-md hover:shadow-lg transition-all">
                   <div className="flex items-center justify-between">
-                    <span className="font-medium text-foreground">
+                    <span className="text-foreground font-extrabold">
                       {review.profiles?.full_name || "کاربر"}
                     </span>
                     {renderStars(review.rating)}
                   </div>
-                  <p className="text-foreground/80">{review.comment}</p>
+                  <p className="text-foreground/80 font-bold">{review.comment}</p>
                   <p className="text-xs text-foreground/60">
                     {new Date(review.created_at).toLocaleDateString("fa-IR")}
                   </p>

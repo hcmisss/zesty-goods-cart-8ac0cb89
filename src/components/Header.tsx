@@ -70,7 +70,7 @@ const Header = ({
         <img src={logo} alt="لوگو" className="h-8 w-8 object-contain" />
         <h1 style={{
         fontFamily: 'YekanBakh, Kalameh, sans-serif'
-      }} className="leading-tight font-extrabold text-muted-foreground text-xl">ترشی خانگی </h1>
+      }} className="leading-tight font-extrabold text-muted-foreground text-lg">ترشی خوشمزه خانگی </h1>
       </div>
       
       <div className="flex items-center gap-2">

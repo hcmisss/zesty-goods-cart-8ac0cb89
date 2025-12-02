@@ -68,9 +68,9 @@ const Header = ({
       
       <div className="flex items-center gap-2 flex-1 justify-center">
         <img src={logo} alt="لوگو" className="h-8 w-8 object-contain" />
-        <h1 className="text-foreground leading-tight font-bold text-lg" style={{
+        <h1 style={{
         fontFamily: 'YekanBakh, Kalameh, sans-serif'
-      }}>ترشی خانگی </h1>
+      }} className="leading-tight text-lg font-extrabold text-muted-foreground">ترشی خانگی حکیمی </h1>
       </div>
       
       <div className="flex items-center gap-2">

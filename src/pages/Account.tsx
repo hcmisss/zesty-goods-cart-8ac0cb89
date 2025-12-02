@@ -144,8 +144,8 @@ const Account = () => {
                 <ShieldCheck className="h-6 w-6 text-accent" />
               </div>
               <div className="flex-1 text-right">
-                <p className="font-medium text-foreground">پنل مدیریت</p>
-                <p className="text-sm text-primary">مدیریت محصولات و سفارشات</p>
+                <p className="text-foreground font-extrabold">پنل مدیریت</p>
+                <p className="text-sm text-primary font-bold">مدیریت محصولات و سفارشات</p>
               </div>
               <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
             </button>}
@@ -155,8 +155,8 @@ const Account = () => {
               <Package className="h-6 w-6 text-primary" />
             </div>
             <div className="flex-1 text-right">
-              <p className="font-medium text-foreground">سفارشات من</p>
-              <p className="text-sm text-primary">مشاهده تاریخچه سفارشات</p>
+              <p className="text-foreground font-extrabold">سفارشات من</p>
+              <p className="text-sm text-primary font-bold">مشاهده تاریخچه سفارشات</p>
             </div>
             <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
           </button>
@@ -166,8 +166,8 @@ const Account = () => {
               <LogOut className="h-6 w-6 text-destructive" />
             </div>
             <div className="flex-1 text-right">
-              <p className="font-medium text-card-foreground">خروج از حساب</p>
-              <p className="text-sm text-primary">خروج از حساب کاربری</p>
+              <p className="text-card-foreground font-extrabold">خروج از حساب</p>
+              <p className="text-sm text-primary font-bold">خروج از حساب کاربری</p>
             </div>
             <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
           </button>

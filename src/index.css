@@ -81,27 +81,40 @@ All colors MUST be HSL.
     direction: rtl;
     position: relative;
     min-height: 100vh;
+    overflow-x: hidden;
   }
   
   body::before {
     content: '';
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
     background-image: url('/src/assets/pickles-background-optimized.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     z-index: -2;
+    pointer-events: none;
   }
   
   body::after {
     content: '';
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
     backdrop-filter: blur(12px);
     background-color: rgba(0, 0, 0, 0.45);
     z-index: -1;
+    pointer-events: none;
   }
 }
 

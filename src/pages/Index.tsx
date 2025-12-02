@@ -9,6 +9,10 @@ import Cart from "@/components/Cart";
 import BottomNav from "@/components/BottomNav";
 import { Loader2, Plus } from "lucide-react";
 import categoryLocalPickles from "@/assets/category-local-pickles.jpg";
+import productLiteh from "@/assets/product-liteh.jpg";
+import productKhiarshoor from "@/assets/product-khiarshoor.jpg";
+import productMakhloot from "@/assets/product-makhloot.jpg";
+import productSeer from "@/assets/product-seer.jpg";
 interface Product {
   id: string;
   name: string;
@@ -101,11 +105,11 @@ const Index = () => {
   };
   const categories = [{
     name: "ترشی سبزیجات",
-    image: categoryLocalPickles,
+    image: productLiteh,
     path: "/categories"
   }, {
     name: "ترشی میوه‌جات",
-    image: categoryLocalPickles,
+    image: productKhiarshoor,
     path: "/categories"
   }, {
     name: "ترشی‌های محلی",
@@ -113,7 +117,7 @@ const Index = () => {
     path: "/categories"
   }, {
     name: "شورها",
-    image: categoryLocalPickles,
+    image: productMakhloot,
     path: "/categories"
   }];
   return <div className="animated-background min-h-screen pb-20">

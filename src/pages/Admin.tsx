@@ -188,8 +188,8 @@ const Admin = () => {
           {/* Form Section */}
           <Card className="animate-fade-in bg-card/40 backdrop-blur-md border-border/30 shadow-xl">
             <CardHeader>
-              <CardTitle className="text-foreground">{isEditing ? "ویرایش محصول" : "افزودن محصول جدید"}</CardTitle>
-              <CardDescription className="text-foreground/70">
+              <CardTitle className="text-foreground font-extrabold">{isEditing ? "ویرایش محصول" : "افزودن محصول جدید"}</CardTitle>
+              <CardDescription className="text-foreground/70 font-bold">
                 اطلاعات محصول را وارد کنید
               </CardDescription>
             </CardHeader>

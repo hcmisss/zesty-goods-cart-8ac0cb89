@@ -145,7 +145,7 @@ const Orders = () => {
         <button onClick={() => navigate("/")} className="text-foreground">
           <ArrowLeft className="h-7 w-7" />
         </button>
-        <h1 className="text-foreground text-xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-8">
+        <h1 className="text-foreground text-xl leading-tight tracking-[-0.015em] flex-1 text-center pr-8 font-extrabold">
           سفارشات من
         </h1>
       </header>

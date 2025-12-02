@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Flower2, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { z } from "zod";
-
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
@@ -16,29 +15,30 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
   useEffect(() => {
     const {
-      data: { subscription },
+      data: {
+        subscription
+      }
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         navigate("/");
       }
     });
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({
+      data: {
+        session
+      }
+    }) => {
       if (session) {
         navigate("/");
       }
     });
-
     return () => subscription.unsubscribe();
   }, [navigate]);
-
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
     try {
       // Validate fullName if signing up
       if (!isLogin) {
@@ -48,65 +48,59 @@ const Auth = () => {
           toast({
             title: "خطای اعتبارسنجی",
             description: result.error.errors[0].message,
-            variant: "destructive",
+            variant: "destructive"
           });
           setLoading(false);
           return;
         }
       }
-
       if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
+        const {
+          error
+        } = await supabase.auth.signInWithPassword({
           email,
-          password,
+          password
         });
-
         if (error) throw error;
-
         toast({
           title: "خوش آمدید!",
-          description: "با موفقیت وارد شدید.",
+          description: "با موفقیت وارد شدید."
         });
       } else {
-        const { error } = await supabase.auth.signUp({
+        const {
+          error
+        } = await supabase.auth.signUp({
           email,
           password,
           options: {
             data: {
-              full_name: fullName,
+              full_name: fullName
             },
-            emailRedirectTo: `${window.location.origin}/`,
-          },
+            emailRedirectTo: `${window.location.origin}/`
+          }
         });
-
         if (error) throw error;
-
         toast({
           title: "ثبت نام موفق!",
-          description: "حساب کاربری شما ایجاد شد.",
+          description: "حساب کاربری شما ایجاد شد."
         });
       }
     } catch (error: any) {
       toast({
         title: "خطا",
         description: error.message || "مشکلی پیش آمده است.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setLoading(false);
     }
   };
-
-  return (
-    <div className="relative flex min-h-screen w-full flex-col items-center justify-center p-4">
+  return <div className="relative flex min-h-screen w-full flex-col items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6 bg-background/70 backdrop-blur-lg p-8 rounded-2xl border border-border/50 shadow-xl">
         {/* Back Button */}
-        <button
-          onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors mb-4"
-        >
+        <button onClick={() => navigate("/")} className="flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors mb-4">
           <ArrowRight className="h-5 w-5" />
-          <span>بازگشت به صفحه اصلی</span>
+          <span className="font-bold">بازگشت به صفحه اصلی</span>
         </button>
 
         {/* Logo */}
@@ -118,48 +112,28 @@ const Auth = () => {
 
         {/* Headline */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">
+          <h1 className="text-3xl tracking-tight text-foreground font-extrabold">
             {isLogin ? "ورود به حساب کاربری" : "ایجاد حساب کاربری"}
           </h1>
-          <p className="mt-2 text-base text-foreground/80">
-            {isLogin
-              ? "برای ادامه وارد حساب کاربری خود شوید"
-              : "برای خرید ترشی‌های خوشمزه ما ثبت نام کنید"}
+          <p className="mt-2 text-base text-foreground/80 font-bold">
+            {isLogin ? "برای ادامه وارد حساب کاربری خود شوید" : "برای خرید ترشی‌های خوشمزه ما ثبت نام کنید"}
           </p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleAuth} className="space-y-4">
-          {!isLogin && (
-            <div>
+          {!isLogin && <div>
               <Label htmlFor="fullName" className="text-foreground pb-2 block text-sm font-medium">
                 نام و نام خانوادگی
               </Label>
-              <Input
-                id="fullName"
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                required={!isLogin}
-                placeholder="نام و نام خانوادگی خود را وارد کنید"
-                className="h-12 bg-background border-muted"
-              />
-            </div>
-          )}
+              <Input id="fullName" type="text" value={fullName} onChange={e => setFullName(e.target.value)} required={!isLogin} placeholder="نام و نام خانوادگی خود را وارد کنید" className="h-12 bg-background border-muted" />
+            </div>}
 
           <div>
             <Label htmlFor="email" className="text-foreground pb-2 block text-sm font-medium">
               ایمیل
             </Label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              placeholder="ایمیل خود را وارد کنید"
-              className="h-12 bg-background border-muted"
-            />
+            <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="ایمیل خود را وارد کنید" className="h-12 bg-background border-muted" />
           </div>
 
           <div className="relative">
@@ -167,31 +141,14 @@ const Auth = () => {
               رمز عبور
             </Label>
             <div className="relative">
-              <Input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder="رمز عبور خود را وارد کنید"
-                minLength={6}
-                className="h-12 bg-background border-muted pl-10"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute bottom-3 left-3 text-foreground/60"
-              >
+              <Input id="password" type={showPassword ? "text" : "password"} value={password} onChange={e => setPassword(e.target.value)} required placeholder="رمز عبور خود را وارد کنید" minLength={6} className="h-12 bg-background border-muted pl-10" />
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute bottom-3 left-3 text-foreground/60">
                 {showPassword ? <Eye className="h-5 w-5" /> : <EyeOff className="h-5 w-5" />}
               </button>
             </div>
           </div>
 
-          <Button
-            type="submit"
-            className="w-full h-12 bg-primary text-white font-bold hover:bg-primary/90"
-            disabled={loading}
-          >
+          <Button type="submit" className="w-full h-12 bg-primary text-white font-bold hover:bg-primary/90" disabled={loading}>
             {loading ? "لطفا صبر کنید..." : isLogin ? "ورود" : "ثبت نام"}
           </Button>
 
@@ -202,20 +159,11 @@ const Auth = () => {
             <hr className="flex-grow border-muted" />
           </div>
 
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full h-12 border-muted text-foreground hover:bg-muted/20"
-            onClick={() => setIsLogin(!isLogin)}
-          >
-            {isLogin
-              ? "حساب کاربری ندارید؟ ثبت نام کنید"
-              : "حساب کاربری دارید؟ وارد شوید"}
+          <Button type="button" variant="outline" className="w-full h-12 border-muted text-foreground hover:bg-muted/20" onClick={() => setIsLogin(!isLogin)}>
+            {isLogin ? "حساب کاربری ندارید؟ ثبت نام کنید" : "حساب کاربری دارید؟ وارد شوید"}
           </Button>
         </form>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Auth;

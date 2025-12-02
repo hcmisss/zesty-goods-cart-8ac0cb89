@@ -178,7 +178,7 @@ const Admin = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-extrabold text-secondary-foreground">پنل مدیریت</h1>
-          <Button onClick={handleLogout} variant="outline" className="bg-card/30 backdrop-blur-md border-border/30 hover:bg-card/40">
+          <Button onClick={handleLogout} variant="outline" className="bg-card/30 backdrop-blur-md border-border/30 hover:bg-card/40 font-extrabold text-xl">
             <LogOut className="ml-2 h-4 w-4" />
             خروج
           </Button>

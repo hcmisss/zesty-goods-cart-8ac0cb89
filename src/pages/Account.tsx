@@ -88,7 +88,7 @@ const Account = () => {
         <button onClick={() => navigate("/")} className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-foreground">
           <ArrowLeft className="h-6 w-6" />
         </button>
-        <h1 className="flex-1 text-center text-lg font-bold text-foreground">
+        <h1 className="flex-1 text-center text-lg text-foreground font-extrabold">
           حساب کاربری
         </h1>
         <div className="w-12"></div>
@@ -107,10 +107,10 @@ const Account = () => {
                   <Label htmlFor="fullName">نام کامل</Label>
                   <Input id="fullName" value={fullName} onChange={e => setFullName(e.target.value)} placeholder="نام کامل خود را وارد کنید" />
                 </div> : <>
-                  <h2 className="text-[sidebar-primary-foreground] font-extrabold text-popover-foreground">
+                  <h2 className="font-extrabold text-popover-foreground text-2xl">
                     {profile?.full_name || "کاربر"}
                   </h2>
-                  <p className="text-sm text-primary-foreground">{user?.email}</p>
+                  <p className="text-primary-foreground text-lg">{user?.email}</p>
                 </>}
             </div>
             <button onClick={() => {
@@ -144,7 +144,7 @@ const Account = () => {
                 <ShieldCheck className="h-6 w-6 text-accent" />
               </div>
               <div className="flex-1 text-right">
-                <p className="font-extrabold text-sidebar-border">پنل مدیریت</p>
+                <p className="font-extrabold text-sidebar-border text-xl">پنل مدیریت</p>
                 <p className="text-sm font-bold text-secondary-foreground">مدیریت محصولات و سفارشات</p>
               </div>
               <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
@@ -155,7 +155,7 @@ const Account = () => {
               <Package className="h-6 w-6 text-primary" />
             </div>
             <div className="flex-1 text-right">
-              <p className="text-foreground font-extrabold">سفارشات من</p>
+              <p className="text-foreground font-extrabold text-xl">سفارشات من</p>
               <p className="text-sm font-bold text-destructive-foreground">مشاهده تاریخچه سفارشات</p>
             </div>
             <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
@@ -166,7 +166,7 @@ const Account = () => {
               <LogOut className="h-6 w-6 text-destructive" />
             </div>
             <div className="flex-1 text-right">
-              <p className="text-card-foreground font-extrabold">خروج از حساب</p>
+              <p className="text-card-foreground font-extrabold text-xl">خروج از حساب</p>
               <p className="text-sm font-bold text-muted">خروج از حساب کاربری</p>
             </div>
             <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />

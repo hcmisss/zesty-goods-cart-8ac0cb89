@@ -107,7 +107,7 @@ const Account = () => {
                   <Label htmlFor="fullName">نام کامل</Label>
                   <Input id="fullName" value={fullName} onChange={e => setFullName(e.target.value)} placeholder="نام کامل خود را وارد کنید" />
                 </div> : <>
-                  <h2 className="font-bold text-[sidebar-primary-foreground] text-sidebar-border">
+                  <h2 className="text-[sidebar-primary-foreground] text-primary font-extrabold">
                     {profile?.full_name || "کاربر"}
                   </h2>
                   <p className="text-sm text-primary-foreground">{user?.email}</p>

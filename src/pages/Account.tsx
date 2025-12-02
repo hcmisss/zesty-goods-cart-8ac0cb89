@@ -144,7 +144,7 @@ const Account = () => {
                 <ShieldCheck className="h-6 w-6 text-accent" />
               </div>
               <div className="flex-1 text-right">
-                <p className="text-foreground font-extrabold">پنل مدیریت</p>
+                <p className="font-extrabold text-sidebar-border">پنل مدیریت</p>
                 <p className="text-sm font-bold text-secondary-foreground">مدیریت محصولات و سفارشات</p>
               </div>
               <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
@@ -156,7 +156,7 @@ const Account = () => {
             </div>
             <div className="flex-1 text-right">
               <p className="text-foreground font-extrabold">سفارشات من</p>
-              <p className="text-sm text-primary font-bold">مشاهده تاریخچه سفارشات</p>
+              <p className="text-sm font-bold text-destructive-foreground">مشاهده تاریخچه سفارشات</p>
             </div>
             <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
           </button>
@@ -167,7 +167,7 @@ const Account = () => {
             </div>
             <div className="flex-1 text-right">
               <p className="text-card-foreground font-extrabold">خروج از حساب</p>
-              <p className="text-sm text-primary font-bold">خروج از حساب کاربری</p>
+              <p className="text-sm font-bold text-muted">خروج از حساب کاربری</p>
             </div>
             <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
           </button>

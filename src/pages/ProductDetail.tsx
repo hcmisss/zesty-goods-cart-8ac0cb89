@@ -102,7 +102,7 @@ const ProductDetail = () => {
         <button onClick={() => navigate("/")} className="flex cursor-pointer items-center justify-center rounded-full size-10 bg-transparent text-foreground">
           <ArrowLeft className="h-6 w-6" />
         </button>
-        <h1 className="text-lg font-bold">جزئیات محصول</h1>
+        <h1 className="text-lg font-extrabold">جزئیات محصول</h1>
         <div className="flex items-center gap-2">
           <button onClick={toggleFavorite} className="flex cursor-pointer items-center justify-center rounded-full size-10 bg-transparent text-foreground">
             <Heart className={`h-5 w-5 ${isFavorite ? 'fill-current text-primary' : ''}`} />

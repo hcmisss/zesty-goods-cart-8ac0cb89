@@ -145,7 +145,7 @@ const Account = () => {
               </div>
               <div className="flex-1 text-right">
                 <p className="font-medium text-foreground">پنل مدیریت</p>
-                <p className="text-sm text-muted-foreground">مدیریت محصولات و سفارشات</p>
+                <p className="text-sm text-[#a77161]">مدیریت محصولات و سفارشات</p>
               </div>
               <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
             </button>}

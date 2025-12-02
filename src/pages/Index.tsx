@@ -143,7 +143,7 @@ const Index = () => {
                 backgroundImage: `url(${product.image})`
               }} onClick={() => navigate(`/product/${product.id}`)} />
                     <div className="flex flex-col gap-1">
-                      <p className="text-foreground leading-normal line-clamp-1 text-lg font-semibold">
+                      <p className="text-foreground leading-normal line-clamp-1 font-semibold text-base">
                         {product.name}
                       </p>
                       <div className="flex justify-between items-center">
@@ -198,12 +198,12 @@ const Index = () => {
         {/* About Section */}
         <section id="about" className="py-12 px-4 bg-card/30 backdrop-blur-md border-y border-border/20">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6 text-slate-50">درباره ما</h2>
-            <p className="text-base leading-relaxed text-foreground/90 mb-4">
+            <h2 className="text-3xl mb-6 text-slate-50 font-extrabold">درباره ما</h2>
+            <p className="leading-relaxed text-foreground/90 mb-4 text-xl font-semibold">
               فروشگاه ترشیجات سنتی با بیش از ۳۰ سال سابقه، تولید کننده انواع ترشی‌های خانگی و سنتی با کیفیت بالا می‌باشد.
               ما با استفاده از بهترین مواد اولیه و دستور پخت‌های اصیل، طعمی بی‌نظیر را برای شما به ارمغان می‌آوریم.
             </p>
-            <p className="text-base leading-relaxed text-foreground/90">
+            <p className="leading-relaxed text-foreground/90 text-xl">
               تمامی محصولات ما با رعایت کامل اصول بهداشتی و استفاده از مواد طبیعی تهیه می‌شوند.
             </p>
           </div>

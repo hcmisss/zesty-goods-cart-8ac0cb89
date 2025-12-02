@@ -107,7 +107,7 @@ const Account = () => {
                   <Label htmlFor="fullName">نام کامل</Label>
                   <Input id="fullName" value={fullName} onChange={e => setFullName(e.target.value)} placeholder="نام کامل خود را وارد کنید" />
                 </div> : <>
-                  <h2 className="font-extrabold text-popover-foreground text-2xl">
+                  <h2 className="font-extrabold text-2xl text-primary">
                     {profile?.full_name || "کاربر"}
                   </h2>
                   <p className="text-primary-foreground text-lg">{user?.email}</p>
@@ -144,7 +144,7 @@ const Account = () => {
                 <ShieldCheck className="h-6 w-6 text-accent" />
               </div>
               <div className="flex-1 text-right">
-                <p className="font-extrabold text-sidebar-border text-xl">پنل مدیریت</p>
+                <p className="font-extrabold text-xl text-primary">پنل مدیریت</p>
                 <p className="text-sm font-bold text-secondary-foreground">مدیریت محصولات و سفارشات</p>
               </div>
               <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />
@@ -155,7 +155,7 @@ const Account = () => {
               <Package className="h-6 w-6 text-primary" />
             </div>
             <div className="flex-1 text-right">
-              <p className="text-foreground font-extrabold text-xl">سفارشات من</p>
+              <p className="font-extrabold text-xl text-primary">سفارشات من</p>
               <p className="text-sm font-bold text-destructive-foreground">مشاهده تاریخچه سفارشات</p>
             </div>
             <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180" />

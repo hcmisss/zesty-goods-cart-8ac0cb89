@@ -147,7 +147,7 @@ const Index = () => {
                         {product.name}
                       </p>
                       <div className="flex justify-between items-center">
-                        <p className="text-muted-foreground text-sm font-normal leading-normal">
+                        <p className="text-sm leading-normal font-bold text-[#523d28]">
                           {product.price.toLocaleString('fa-IR')} تومان
                         </p>
                         <button onClick={e => {
@@ -170,20 +170,13 @@ const Index = () => {
           </h2>
           
           <div className="grid grid-cols-2 gap-4 px-4">
-            {categories.map((category, index) => (
-              <div 
-                key={index} 
-                onClick={() => navigate(category.path)}
-                className="relative flex flex-col items-center justify-center rounded-lg aspect-square overflow-hidden bg-cover bg-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl" 
-                style={{
-                  backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${category.image})`
-                }}
-              >
+            {categories.map((category, index) => <div key={index} onClick={() => navigate(category.path)} className="relative flex flex-col items-center justify-center rounded-lg aspect-square overflow-hidden bg-cover bg-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl" style={{
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${category.image})`
+          }}>
                 <p className="relative text-white font-bold text-lg z-10">
                   {category.name}
                 </p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </section>
 

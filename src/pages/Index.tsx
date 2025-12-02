@@ -218,20 +218,20 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105">
                 <span className="text-4xl mb-4">📞</span>
-                <h3 className="font-bold text-lg mb-2 text-foreground">تلفن</h3>
+                <h3 className="text-lg mb-2 text-foreground font-extrabold">تلفن</h3>
                 <p className="text-foreground/80 font-medium" dir="ltr">021-12345678</p>
               </div>
               
               <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105">
                 <span className="text-4xl mb-4">📧</span>
-                <h3 className="font-bold text-lg mb-2 text-foreground">ایمیل</h3>
-                <p className="text-foreground/80 font-medium">info@torshijat.com</p>
+                <h3 className="text-lg mb-2 text-foreground font-extrabold">ایمیل</h3>
+                <p className="text-foreground/80 font-bold">vosez17@gmail.com</p>
               </div>
               
               <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105">
                 <span className="text-4xl mb-4">📍</span>
-                <h3 className="font-bold text-lg mb-2 text-foreground">آدرس</h3>
-                <p className="text-foreground/80 font-medium">تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
+                <h3 className="text-lg mb-2 text-foreground font-extrabold">آدرس</h3>
+                <p className="text-foreground/80 text-base font-semibold">تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
               </div>
             </div>
           </div>

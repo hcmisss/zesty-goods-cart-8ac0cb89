@@ -194,7 +194,7 @@ const Orders = () => {
                   <p className="text-foreground text-sm font-semibold mb-2">محصولات:</p>
                   <div className="space-y-2 text-lg">
                     {order.order_items.map((item: any, index: number) => <div key={index} className="flex justify-between items-center text-sm">
-                        <span className="text-foreground/80 font-extrabold text-lg">
+                        <span className="text-foreground/80 font-extrabold text-base">
                           {item.product_name} × {item.quantity}
                         </span>
                         <span className="text-foreground font-medium">

@@ -192,9 +192,9 @@ const Orders = () => {
 
               {order.order_items && order.order_items.length > 0 && <div className="border-t border-border pt-3">
                   <p className="text-foreground text-sm font-semibold mb-2">محصولات:</p>
-                  <div className="space-y-2">
+                  <div className="space-y-2 text-lg">
                     {order.order_items.map((item: any, index: number) => <div key={index} className="flex justify-between items-center text-sm">
-                        <span className="text-foreground/80">
+                        <span className="text-foreground/80 font-extrabold text-base">
                           {item.product_name} × {item.quantity}
                         </span>
                         <span className="text-foreground font-medium">

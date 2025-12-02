@@ -87,7 +87,7 @@ All colors MUST be HSL.
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url('/src/assets/pickles-background.jpg');
+    background-image: url('/src/assets/pickles-background-optimized.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

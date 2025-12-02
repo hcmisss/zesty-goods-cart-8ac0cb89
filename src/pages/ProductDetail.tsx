@@ -121,9 +121,9 @@ const ProductDetail = () => {
             backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 25%), url(${product.image})`
           }}>
               <div className="flex justify-center gap-2 p-5">
-                <div className="h-2 w-8 rounded-full bg-background"></div>
+                <div className="h-2 w-8 rounded-full bg-background text-base font-bold"></div>
                 <div className="h-2 w-2 rounded-full bg-background/50"></div>
-                <div className="h-2 w-2 rounded-full bg-background/50"></div>
+                <div className="h-2 w-2 rounded-full bg-background/50 text-base"></div>
               </div>
             </div>
           </div>

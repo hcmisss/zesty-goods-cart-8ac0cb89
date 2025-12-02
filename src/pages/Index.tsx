@@ -101,11 +101,11 @@ const Index = () => {
   };
   const categories = [{
     name: "ترشی سبزیجات",
-    image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400",
+    image: categoryLocalPickles,
     path: "/categories"
   }, {
     name: "ترشی میوه‌جات",
-    image: "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=400",
+    image: categoryLocalPickles,
     path: "/categories"
   }, {
     name: "ترشی‌های محلی",
@@ -113,7 +113,7 @@ const Index = () => {
     path: "/categories"
   }, {
     name: "شورها",
-    image: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?w=400",
+    image: categoryLocalPickles,
     path: "/categories"
   }];
   return <div className="animated-background min-h-screen pb-20">

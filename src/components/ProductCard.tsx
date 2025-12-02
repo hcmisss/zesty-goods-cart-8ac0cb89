@@ -61,7 +61,7 @@ const ProductCard = ({
       </div>
 
       <div className="px-3 pb-3 flex flex-col gap-2">
-        <p className="font-semibold leading-normal line-clamp-1 text-[sidebar-primary-foreground] text-popover-foreground">
+        <p className="leading-normal line-clamp-1 text-popover-foreground text-lg font-bold">
           {product.name}
         </p>
         <div className="flex justify-between items-center">

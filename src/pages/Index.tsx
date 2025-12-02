@@ -143,11 +143,11 @@ const Index = () => {
                 backgroundImage: `url(${product.image})`
               }} onClick={() => navigate(`/product/${product.id}`)} />
                     <div className="flex flex-col gap-1">
-                      <p className="text-foreground text-base font-medium leading-normal line-clamp-1">
+                      <p className="text-foreground leading-normal line-clamp-1 text-lg font-semibold">
                         {product.name}
                       </p>
                       <div className="flex justify-between items-center">
-                        <p className="text-sm leading-normal font-bold text-[#523d28]">
+                        <p className="leading-normal font-bold text-[#523d28] text-base">
                           {product.price.toLocaleString('fa-IR')} تومان
                         </p>
                         <button onClick={e => {

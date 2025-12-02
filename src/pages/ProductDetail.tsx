@@ -147,14 +147,14 @@ const ProductDetail = () => {
               <div className="flex-shrink-0 w-20">
                 <span className="text-sm font-bold text-foreground/80">وزن:</span>
               </div>
-              <span className="text-base text-foreground/90">{product.weight}</span>
+              <span className="text-base text-foreground/90 font-bold">{product.weight}</span>
             </div>
             
             <div className="flex items-start gap-3">
               <div className="flex-shrink-0 w-20">
                 <span className="text-sm font-bold text-foreground/80">توضیحات:</span>
               </div>
-              <p className="text-base text-foreground/90 leading-relaxed">
+              <p className="text-base text-foreground/90 leading-relaxed font-bold">
                 {product.description}
               </p>
             </div>

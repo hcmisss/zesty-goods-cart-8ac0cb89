@@ -18,7 +18,9 @@
     <!-- Preload critical fonts to reduce render-blocking -->
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir-Regular.woff2" as="font" type="font/woff2" crossorigin />
     
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <!-- Load font CSS asynchronously to prevent render blocking -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />
+    <noscript><link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" /></noscript>
 
     <meta property="og:title" content="فروشگاه ترشیجات سنتی | بهترین ترشی‌های خانگی" />
     <meta property="og:description" content="فروشگاه آنلاین ترشیجات و خوراکی‌های سنتی - ترشی لیته، ترشی خیارشور، ترشی مخلوط" />

@@ -173,7 +173,7 @@ const ProductDetail = () => {
           <div className="flex-1">
             <button onClick={addToCart} className="w-full flex items-center justify-center gap-2 rounded-lg bg-primary py-3 text-white text-lg font-bold hover:bg-primary/90 transition-colors">
               <ShoppingCart className="h-5 w-5" />
-              <span>افزودن به سبد خرید</span>
+              <span className="font-extrabold">افزودن به سبد خرید</span>
             </button>
           </div>
           <div className="flex items-center rounded-lg border border-border bg-card">

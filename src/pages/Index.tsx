@@ -173,7 +173,7 @@ const Index = () => {
             {categories.map((category, index) => <div key={index} onClick={() => navigate(category.path)} className="relative flex flex-col items-center justify-center rounded-lg aspect-square overflow-hidden bg-cover bg-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl" style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${category.image})`
           }}>
-                <p className="relative text-white font-bold text-lg z-10">
+                <p className="relative text-white font-bold z-10 text-3xl">
                   {category.name}
                 </p>
               </div>)}

@@ -61,11 +61,11 @@ const ProductCard = ({
       </div>
 
       <div className="px-3 pb-3 flex flex-col gap-2">
-        <p className="text-base font-semibold leading-normal line-clamp-1 text-secondary-foreground">
+        <p className="font-semibold leading-normal line-clamp-1 text-[sidebar-primary-foreground] text-popover-foreground">
           {product.name}
         </p>
         <div className="flex justify-between items-center">
-          <p className="text-sm leading-normal font-bold text-[#5d462e]">
+          <p className="text-sm leading-normal font-bold text-[#5b452d]">
             {product.price.toLocaleString('fa-IR')} تومان
           </p>
           <button onClick={handleAddToCart} className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white hover:scale-110 transition-transform">

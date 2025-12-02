@@ -155,19 +155,33 @@ const ProductDetail = () => {
 
         {/* Product Info */}
         <div className="mx-4 mt-4 mb-2 p-4 bg-background/40 backdrop-blur-md border border-border/30 rounded-xl">
-          <h1 className="text-3xl font-bold leading-tight tracking-tight">
+          <h1 className="text-3xl font-bold leading-tight tracking-tight mb-3">
             {product.name}
           </h1>
-          <p className="text-base font-normal leading-normal text-foreground/70 pt-1">
-            {product.description}
-          </p>
-          <div className="flex justify-between items-center mt-4">
+          
+          <div className="flex items-center justify-between mb-4 pb-4 border-b border-border/20">
             <h2 className="text-2xl font-bold leading-tight text-primary">
               {product.price.toLocaleString('fa-IR')} تومان
             </h2>
-            <p className="text-sm font-normal text-foreground/70">
-              {product.weight}
-            </p>
+          </div>
+
+          {/* Product Details */}
+          <div className="space-y-3 mb-4">
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-20">
+                <span className="text-sm font-bold text-foreground/80">وزن:</span>
+              </div>
+              <span className="text-base text-foreground/90">{product.weight}</span>
+            </div>
+            
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-20">
+                <span className="text-sm font-bold text-foreground/80">توضیحات:</span>
+              </div>
+              <p className="text-base text-foreground/90 leading-relaxed">
+                {product.description}
+              </p>
+            </div>
           </div>
         </div>
 

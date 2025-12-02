@@ -165,7 +165,7 @@ const Index = () => {
 
         {/* Categories Section */}
         <section className="py-8">
-          <h2 className="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 text-stone-50">
+          <h2 className="text-[22px] leading-tight tracking-[-0.015em] px-4 pb-3 text-stone-50 font-extrabold">
             دسته‌بندی‌ها
           </h2>
           

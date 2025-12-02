@@ -236,7 +236,7 @@ const Admin = () => {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button type="submit" disabled={loading} className="flex-1">
+                  <Button type="submit" disabled={loading} className="flex-1 text-xl font-extrabold">
                     {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : isEditing ? <>
                         <Edit className="ml-2 h-4 w-4" />
                         ویرایش

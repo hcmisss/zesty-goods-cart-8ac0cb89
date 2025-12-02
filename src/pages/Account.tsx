@@ -110,7 +110,7 @@ const Account = () => {
                   <h2 className="font-bold text-[sidebar-primary-foreground] text-sidebar-border">
                     {profile?.full_name || "کاربر"}
                   </h2>
-                  <p className="text-sm text-muted-foreground">{user?.email}</p>
+                  <p className="text-sm text-primary-foreground">{user?.email}</p>
                 </>}
             </div>
             <button onClick={() => {

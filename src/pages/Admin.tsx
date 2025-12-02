@@ -269,11 +269,11 @@ const Admin = () => {
                         <img src={product.image} alt={product.name} className="w-24 h-24 object-cover rounded-lg" />
                         <div className="flex-1">
                           <h3 className="text-lg text-foreground font-extrabold">{product.name}</h3>
-                          <p className="text-sm text-foreground/70 line-clamp-2">
+                          <p className="text-foreground/70 line-clamp-2 text-lg font-semibold">
                             {product.description}
                           </p>
                           <div className="flex items-center gap-4 mt-2">
-                            <span className="font-bold text-primary">
+                            <span className="font-bold text-secondary-foreground">
                               {product.price.toLocaleString()} تومان
                             </span>
                             <span className="text-sm text-foreground/70">

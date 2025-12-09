@@ -9,7 +9,7 @@ const Hero = () => {
           <div className="bg-white/20 backdrop-blur-md rounded-xl border border-white/30 shadow-lg py-0 my-0 mx-0 px-0 opacity-85">
             <p style={{
             fontFamily: 'Kalameh, sans-serif'
-          }} className="text-white leading-tight tracking-tight text-center drop-shadow-lg font-extrabold text-3xl">
+          }} className="text-white leading-tight tracking-tight text-center drop-shadow-lg font-extrabold text-4xl">
               طعم اصیل ترشی خانگی
             </p>
           </div>

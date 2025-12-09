@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import logo from "@/assets/logo.png";
+import backgroundImage from "@/assets/pickles-background-optimized.jpg";
 
 interface LoadingScreenProps {
   onLoadComplete: () => void;
@@ -49,24 +50,24 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
       className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 ${
         isExiting ? "opacity-0" : "opacity-100"
       }`}
-      style={{
-        background: "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)/0.8) 50%, hsl(var(--secondary)) 100%)",
-      }}
     >
-      {/* Animated background circles */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -left-1/2 w-full h-full rounded-full bg-white/5 animate-pulse" />
-        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full rounded-full bg-white/5 animate-pulse" style={{ animationDelay: "0.5s" }} />
-      </div>
+      {/* Background image - same as main site */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      />
+      
+      {/* Dark overlay with blur - same as main site */}
+      <div className="absolute inset-0 backdrop-blur-[12px] bg-black/45" />
 
       {/* Glass card */}
       <div
-        className={`relative bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 flex flex-col items-center gap-6 transition-transform duration-500 ${
+        className={`relative bg-card/40 backdrop-blur-md rounded-xl border border-border/30 shadow-lg p-8 flex flex-col items-center gap-6 transition-transform duration-500 ${
           isExiting ? "scale-95" : "scale-100"
         }`}
       >
         {/* Logo */}
-        <div className="w-24 h-24 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg overflow-hidden">
+        <div className="w-24 h-24 rounded-full bg-card/50 backdrop-blur-md border border-border/30 flex items-center justify-center shadow-lg overflow-hidden">
           <img 
             src={logo} 
             alt="ترشی خانگی حکیمی" 
@@ -76,23 +77,23 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
 
         {/* Brand name */}
         <h1 
-          className="text-white text-2xl font-bold text-center drop-shadow-lg"
+          className="text-foreground text-2xl font-bold text-center drop-shadow-lg"
           style={{ fontFamily: "Kalameh, sans-serif" }}
         >
           ترشی خانگی حکیمی
         </h1>
 
         {/* Loading bar */}
-        <div className="w-48 h-2 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
+        <div className="w-48 h-2 bg-muted/50 rounded-full overflow-hidden backdrop-blur-sm">
           <div
-            className="h-full bg-white/80 rounded-full transition-all duration-300 ease-out"
+            className="h-full bg-primary rounded-full transition-all duration-300 ease-out"
             style={{ width: `${Math.min(progress, 100)}%` }}
           />
         </div>
 
         {/* Loading text */}
         <p 
-          className="text-white/80 text-sm"
+          className="text-muted-foreground text-sm"
           style={{ fontFamily: "Kalameh, sans-serif" }}
         >
           در حال بارگذاری...

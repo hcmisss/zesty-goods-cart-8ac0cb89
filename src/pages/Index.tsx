@@ -182,7 +182,7 @@ const Index = () => {
 
         {/* All Products Section */}
         <section id="products" className="py-8 px-4">
-          <h2 className="text-[22px] font-bold leading-tight tracking-[-0.015em] mb-6 text-stone-50">
+          <h2 className="text-[22px] leading-tight tracking-[-0.015em] mb-6 text-stone-50 font-extrabold">
             تمام محصولات
           </h2>
           

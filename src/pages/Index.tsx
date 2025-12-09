@@ -128,7 +128,7 @@ const Index = () => {
 
         {/* Best Sellers Section */}
         <section className="py-4">
-          <h2 className="text-[22px] leading-tight tracking-[-0.015em] px-4 pb-3 text-slate-50 font-extrabold lg:text-2xl lg:px-8">
+          <h2 className="text-[22px] leading-tight tracking-[-0.015em] px-4 pb-3 text-slate-50 font-extrabold">
             پرفروش‌ترین‌ها
           </h2>
           
@@ -136,25 +136,25 @@ const Index = () => {
               <Loader2 className="h-12 w-12 animate-spin text-primary" />
             </div> : products.length === 0 ? <div className="text-center py-10 text-muted-foreground px-4">
               <p className="text-lg">محصولی در حال حاضر موجود نیست.</p>
-            </div> : <div className="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-x-visible lg:justify-center">
-              <div className="flex items-stretch px-4 gap-4 lg:px-8 lg:gap-6 lg:flex-wrap lg:justify-center lg:max-w-7xl">
-                {products.slice(0, 6).map(product => <div key={product.id} className="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-40 w-40 lg:min-w-48 lg:w-48 xl:min-w-52 xl:w-52 bg-card/50 backdrop-blur-sm p-2 lg:p-3">
+            </div> : <div className="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex items-stretch px-4 gap-4">
+                {products.slice(0, 6).map(product => <div key={product.id} className="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-40 w-40 bg-card/50 backdrop-blur-sm p-2">
                     <div className="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg cursor-pointer hover:scale-105 transition-transform" style={{
                 backgroundImage: `url(${product.image})`
               }} onClick={() => navigate(`/product/${product.id}`)} />
                     <div className="flex flex-col gap-1">
-                      <p className="text-foreground leading-normal line-clamp-1 text-base font-bold lg:text-lg">
+                      <p className="text-foreground leading-normal line-clamp-1 text-base font-bold">
                         {product.name}
                       </p>
                       <div className="flex justify-between items-center">
-                        <p className="leading-normal font-bold text-[#523d28] text-base lg:text-lg">
+                        <p className="leading-normal font-bold text-[#523d28] text-base">
                           {product.price.toLocaleString('fa-IR')} تومان
                         </p>
                         <button onClick={e => {
                     e.stopPropagation();
                     handleAddToCart(product);
-                  }} className="flex h-7 w-7 lg:h-8 lg:w-8 items-center justify-center rounded-full bg-primary text-white hover:scale-110 transition-transform">
-                          <Plus className="h-4 w-4 lg:h-5 lg:w-5" />
+                  }} className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white hover:scale-110 transition-transform">
+                          <Plus className="h-4 w-4" />
                         </button>
                       </div>
                     </div>
@@ -164,16 +164,16 @@ const Index = () => {
         </section>
 
         {/* Categories Section */}
-        <section className="py-8 lg:py-12">
-          <h2 className="text-[22px] leading-tight tracking-[-0.015em] px-4 pb-3 text-stone-50 font-extrabold lg:text-2xl lg:px-8">
+        <section className="py-8">
+          <h2 className="text-[22px] leading-tight tracking-[-0.015em] px-4 pb-3 text-stone-50 font-extrabold">
             دسته‌بندی‌ها
           </h2>
           
-          <div className="grid grid-cols-2 gap-4 px-4 lg:grid-cols-4 lg:gap-6 lg:px-8 lg:max-w-7xl lg:mx-auto">
-            {categories.map((category, index) => <div key={index} onClick={() => navigate(category.path)} className="relative flex flex-col items-center justify-center rounded-lg aspect-square lg:aspect-[4/3] overflow-hidden bg-cover bg-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl" style={{
+          <div className="grid grid-cols-2 gap-4 px-4">
+            {categories.map((category, index) => <div key={index} onClick={() => navigate(category.path)} className="relative flex flex-col items-center justify-center rounded-lg aspect-square overflow-hidden bg-cover bg-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl" style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${category.image})`
           }}>
-                <p className="relative text-white font-bold z-10 text-xl lg:text-2xl">
+                <p className="relative text-white font-bold z-10 text-xl">
                   {category.name}
                 </p>
               </div>)}
@@ -181,59 +181,57 @@ const Index = () => {
         </section>
 
         {/* All Products Section */}
-        <section id="products" className="py-8 px-4 lg:py-12 lg:px-8">
-          <div className="lg:max-w-7xl lg:mx-auto">
-            <h2 className="text-[22px] font-bold leading-tight tracking-[-0.015em] mb-6 text-stone-50 lg:text-2xl">
-              تمام محصولات
-            </h2>
-            
-            {loading ? <div className="flex justify-center items-center py-10">
-                <Loader2 className="h-12 w-12 animate-spin text-primary" />
-              </div> : products.length === 0 ? <div className="text-center py-10 text-muted-foreground">
-                <p className="text-lg">محصولی در حال حاضر موجود نیست.</p>
-              </div> : <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {products.map(product => <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />)}
-              </div>}
-          </div>
+        <section id="products" className="py-8 px-4">
+          <h2 className="text-[22px] font-bold leading-tight tracking-[-0.015em] mb-6 text-stone-50">
+            تمام محصولات
+          </h2>
+          
+          {loading ? <div className="flex justify-center items-center py-10">
+              <Loader2 className="h-12 w-12 animate-spin text-primary" />
+            </div> : products.length === 0 ? <div className="text-center py-10 text-muted-foreground">
+              <p className="text-lg">محصولی در حال حاضر موجود نیست.</p>
+            </div> : <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products.map(product => <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />)}
+            </div>}
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-12 px-4 bg-card/30 backdrop-blur-md border-y border-border/20 lg:py-16">
-          <div className="max-w-4xl mx-auto text-center lg:max-w-5xl">
-            <h2 className="text-3xl mb-6 text-slate-50 font-extrabold lg:text-4xl">درباره ما</h2>
-            <p className="leading-relaxed text-foreground/90 mb-4 text-xl font-semibold lg:text-2xl lg:leading-relaxed">
+        <section id="about" className="py-12 px-4 bg-card/30 backdrop-blur-md border-y border-border/20">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl mb-6 text-slate-50 font-extrabold">درباره ما</h2>
+            <p className="leading-relaxed text-foreground/90 mb-4 text-xl font-semibold">
               فروشگاه ترشیجات سنتی با بیش از ۳۰ سال سابقه، تولید کننده انواع ترشی‌های خانگی و سنتی با کیفیت بالا می‌باشد.
               ما با استفاده از بهترین مواد اولیه و دستور پخت‌های اصیل، طعمی بی‌نظیر را برای شما به ارمغان می‌آوریم.
             </p>
-            <p className="leading-relaxed text-foreground/90 text-xl font-semibold lg:text-2xl lg:leading-relaxed">
+            <p className="leading-relaxed text-foreground/90 text-xl font-semibold">
               تمامی محصولات ما با رعایت کامل اصول بهداشتی و استفاده از مواد طبیعی تهیه می‌شوند.
             </p>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-12 px-4 mb-8 lg:py-16 lg:px-8">
-          <div className="max-w-4xl mx-auto lg:max-w-6xl">
-            <h2 className="text-3xl font-bold text-center mb-8 text-slate-50 lg:text-4xl lg:mb-12">
+        <section id="contact" className="py-12 px-4 mb-8">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8 text-slate-50">
               تماس با ما
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-              <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105 lg:p-8">
-                <span className="text-4xl mb-4 lg:text-5xl">📞</span>
-                <h3 className="text-lg mb-2 text-foreground font-extrabold lg:text-xl">تلفن</h3>
-                <p className="text-foreground/80 font-medium lg:text-lg" dir="ltr">021-12345678</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                <span className="text-4xl mb-4">📞</span>
+                <h3 className="text-lg mb-2 text-foreground font-extrabold">تلفن</h3>
+                <p className="text-foreground/80 font-medium" dir="ltr">021-12345678</p>
               </div>
               
-              <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105 lg:p-8">
-                <span className="text-4xl mb-4 lg:text-5xl">📧</span>
-                <h3 className="text-lg mb-2 text-foreground font-extrabold lg:text-xl">ایمیل</h3>
-                <p className="text-foreground/80 font-bold lg:text-lg">vosez17@gmail.com</p>
+              <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                <span className="text-4xl mb-4">📧</span>
+                <h3 className="text-lg mb-2 text-foreground font-extrabold">ایمیل</h3>
+                <p className="text-foreground/80 font-bold">vosez17@gmail.com</p>
               </div>
               
-              <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105 lg:p-8">
-                <span className="text-4xl mb-4 lg:text-5xl">📍</span>
-                <h3 className="text-lg mb-2 text-foreground font-extrabold lg:text-xl">آدرس</h3>
-                <p className="text-foreground/80 text-base font-semibold lg:text-lg">تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
+              <div className="flex flex-col items-center text-center p-6 bg-card/40 backdrop-blur-md border border-border/30 rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                <span className="text-4xl mb-4">📍</span>
+                <h3 className="text-lg mb-2 text-foreground font-extrabold">آدرس</h3>
+                <p className="text-foreground/80 text-base font-semibold">تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
               </div>
             </div>
           </div>

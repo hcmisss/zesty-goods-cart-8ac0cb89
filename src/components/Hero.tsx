@@ -1,21 +1,15 @@
 import heroImage from "@/assets/hero-banner.jpg";
-
 const Hero = () => {
-  return (
-    <section className="px-4 py-3">
-      <div 
-        className="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[400px] relative"
-        style={{
-          backgroundImage: `url(${heroImage})`
-        }}
-      >
+  return <section className="px-4 py-3">
+      <div className="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[400px] relative" style={{
+      backgroundImage: `url(${heroImage})`
+    }}>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60" />
         <div className="relative flex flex-col items-center p-6 gap-4 mx-4 mb-4">
           <div className="bg-white/20 backdrop-blur-md rounded-xl px-6 py-3 border border-white/30 shadow-lg">
-            <p 
-              className="text-white text-4xl font-bold leading-tight tracking-tight text-center drop-shadow-lg"
-              style={{ fontFamily: 'Kalameh, sans-serif' }}
-            >
+            <p style={{
+            fontFamily: 'Kalameh, sans-serif'
+          }} className="text-white text-4xl leading-tight tracking-tight text-center drop-shadow-lg font-extrabold">
               طعم اصیل ترشی خانگی
             </p>
           </div>
@@ -26,8 +20,6 @@ const Hero = () => {
           </a>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;

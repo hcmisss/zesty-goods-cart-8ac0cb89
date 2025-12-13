@@ -12,6 +12,10 @@ interface Product {
   price: number;
   weight: string;
   image: string;
+  ingredients?: string;
+  health_benefits?: string;
+  food_pairings?: string;
+  food_groups?: string;
 }
 const ProductDetail = () => {
   const {
@@ -142,22 +146,66 @@ const ProductDetail = () => {
           </div>
 
           {/* Product Details */}
-          <div className="space-y-3 mb-4">
+          <div className="space-y-4 mb-4">
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-20">
+              <div className="flex-shrink-0 w-24">
                 <span className="text-sm font-bold text-foreground/80">وزن:</span>
               </div>
               <span className="text-base text-foreground/90 font-bold">{product.weight}</span>
             </div>
             
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-20">
+              <div className="flex-shrink-0 w-24">
                 <span className="text-sm font-bold text-foreground/80">توضیحات:</span>
               </div>
               <p className="text-base text-foreground/90 leading-relaxed font-bold">
                 {product.description}
               </p>
             </div>
+
+            {product.ingredients && (
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-24">
+                  <span className="text-sm font-bold text-foreground/80">ترکیبات:</span>
+                </div>
+                <p className="text-base text-foreground/90 leading-relaxed font-bold">
+                  {product.ingredients}
+                </p>
+              </div>
+            )}
+
+            {product.health_benefits && (
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-24">
+                  <span className="text-sm font-bold text-foreground/80">خواص:</span>
+                </div>
+                <p className="text-base text-foreground/90 leading-relaxed font-bold">
+                  {product.health_benefits}
+                </p>
+              </div>
+            )}
+
+            {product.food_pairings && (
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-24">
+                  <span className="text-sm font-bold text-foreground/80">مناسب با:</span>
+                </div>
+                <p className="text-base text-foreground/90 leading-relaxed font-bold">
+                  {product.food_pairings}
+                </p>
+              </div>
+            )}
+
+            {product.food_groups && (
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-24">
+                  <span className="text-sm font-bold text-foreground/80">گروه غذایی:</span>
+                </div>
+                <p className="text-base text-foreground/90 leading-relaxed font-bold">
+                  {product.food_groups}
+                </p>
+              </div>
+            )}
           </div>
         </div>
 

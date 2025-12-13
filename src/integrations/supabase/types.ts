@@ -105,8 +105,12 @@ export type Database = {
         Row: {
           created_at: string
           description: string
+          food_groups: string | null
+          food_pairings: string | null
+          health_benefits: string | null
           id: string
           image: string
+          ingredients: string | null
           name: string
           price: number
           updated_at: string
@@ -115,8 +119,12 @@ export type Database = {
         Insert: {
           created_at?: string
           description: string
+          food_groups?: string | null
+          food_pairings?: string | null
+          health_benefits?: string | null
           id?: string
           image: string
+          ingredients?: string | null
           name: string
           price: number
           updated_at?: string
@@ -125,8 +133,12 @@ export type Database = {
         Update: {
           created_at?: string
           description?: string
+          food_groups?: string | null
+          food_pairings?: string | null
+          health_benefits?: string | null
           id?: string
           image?: string
+          ingredients?: string | null
           name?: string
           price?: number
           updated_at?: string

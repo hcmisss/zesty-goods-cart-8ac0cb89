@@ -15,10 +15,6 @@ interface Product {
   price: number;
   weight: string;
   image: string;
-  ingredients?: string;
-  health_benefits?: string;
-  food_pairings?: string;
-  food_groups?: string;
 }
 const Admin = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -30,11 +26,7 @@ const Admin = () => {
     description: "",
     price: 0,
     weight: "",
-    image: "",
-    ingredients: "",
-    health_benefits: "",
-    food_pairings: "",
-    food_groups: ""
+    image: ""
   });
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
@@ -99,11 +91,7 @@ const Admin = () => {
           description: formData.description,
           price: formData.price,
           weight: formData.weight,
-          image: formData.image,
-          ingredients: formData.ingredients || null,
-          health_benefits: formData.health_benefits || null,
-          food_pairings: formData.food_pairings || null,
-          food_groups: formData.food_groups || null
+          image: formData.image
         }).eq("id", formData.id);
         if (error) throw error;
         toast({
@@ -118,11 +106,7 @@ const Admin = () => {
           description: formData.description,
           price: formData.price,
           weight: formData.weight,
-          image: formData.image,
-          ingredients: formData.ingredients || null,
-          health_benefits: formData.health_benefits || null,
-          food_pairings: formData.food_pairings || null,
-          food_groups: formData.food_groups || null
+          image: formData.image
         }]);
         if (error) throw error;
         toast({
@@ -143,13 +127,7 @@ const Admin = () => {
     }
   };
   const handleEdit = (product: Product) => {
-    setFormData({
-      ...product,
-      ingredients: product.ingredients || "",
-      health_benefits: product.health_benefits || "",
-      food_pairings: product.food_pairings || "",
-      food_groups: product.food_groups || ""
-    });
+    setFormData(product);
     setIsEditing(true);
     window.scrollTo({
       top: 0,
@@ -183,11 +161,7 @@ const Admin = () => {
       description: "",
       price: 0,
       weight: "",
-      image: "",
-      ingredients: "",
-      health_benefits: "",
-      food_pairings: "",
-      food_groups: ""
+      image: ""
     });
     setIsEditing(false);
   };
@@ -259,38 +233,6 @@ const Admin = () => {
                   ...formData,
                   image: e.target.value
                 })} placeholder="URL تصویر" required className="bg-background/50 border-border/50" />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="ingredients" className="text-foreground">ترکیبات و مواد تشکیل‌دهنده</Label>
-                  <Textarea id="ingredients" value={formData.ingredients} onChange={e => setFormData({
-                  ...formData,
-                  ingredients: e.target.value
-                })} placeholder="مثال: خیار، سرکه، سیر، نمک" className="bg-background/50 border-border/50" />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="health_benefits" className="text-foreground">خواص و فواید سلامتی</Label>
-                  <Textarea id="health_benefits" value={formData.health_benefits} onChange={e => setFormData({
-                  ...formData,
-                  health_benefits: e.target.value
-                })} placeholder="مثال: تقویت گوارش، کاهش فشار خون" className="bg-background/50 border-border/50" />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="food_pairings" className="text-foreground">پیشنهاد غذایی</Label>
-                  <Textarea id="food_pairings" value={formData.food_pairings} onChange={e => setFormData({
-                  ...formData,
-                  food_pairings: e.target.value
-                })} placeholder="مثال: همراه با کباب، چلو و خورشت" className="bg-background/50 border-border/50" />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="food_groups" className="text-foreground">گروه غذایی مکمل</Label>
-                  <Textarea id="food_groups" value={formData.food_groups} onChange={e => setFormData({
-                  ...formData,
-                  food_groups: e.target.value
-                })} placeholder="مثال: مکمل پروتئین‌ها و غذاهای چرب" className="bg-background/50 border-border/50" />
                 </div>
 
                 <div className="flex gap-2">

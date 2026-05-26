@@ -1,7 +1,9 @@
-
 {
 "app":"peaceful-wiles-hsrrgkcsq"
 "port":3000
-"build":{...}
-"disks":[]
+"build":{
+"location":"iran"
+}
+"disks":[
+]
 }

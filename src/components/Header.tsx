@@ -93,6 +93,9 @@ const Header = ({
               <DropdownMenuItem onClick={() => navigate("/orders")}>
                 سفارشات من
               </DropdownMenuItem>
+              {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin/dashboard")}>
+                  داشبورد فروشگاه
+                </DropdownMenuItem>}
               {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin")}>
                   پنل مدیریت
                 </DropdownMenuItem>}

@@ -6,12 +6,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense, useState, useEffect } from "react";
 import Index from "./pages/Index";
 import LoadingScreen from "./components/LoadingScreen";
+import Plasma from "./components/backgrounds/plasma";
 
 // Lazy load less frequently accessed routes
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 const Orders = lazy(() => import("./pages/Orders"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const AdminOrders = lazy(() => import("./pages/AdminOrders"));
 const Categories = lazy(() => import("./pages/Categories"));
 const Favorites = lazy(() => import("./pages/Favorites"));
@@ -45,6 +47,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <Plasma />
         {isLoading && !hasLoaded && (
           <LoadingScreen onLoadComplete={handleLoadComplete} />
         )}
@@ -57,6 +60,7 @@ const App = () => {
                 <Route path="/" element={<Index />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/admin/dashboard" element={<AdminDashboard />} />
                 <Route path="/admin/orders" element={<AdminOrders />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/product/:id" element={<ProductDetail />} />

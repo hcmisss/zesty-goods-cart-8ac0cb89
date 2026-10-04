@@ -3,6 +3,7 @@ import { Heart, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
+import BorderBeam from "@/components/BorderBeam";
 export interface Product {
   id: string;
   name: string;
@@ -51,7 +52,7 @@ const ProductCard = ({
     e.stopPropagation();
     onAddToCart(product);
   };
-  return <div className="flex flex-col gap-3 rounded-xl bg-background/40 backdrop-blur-md border border-border/30 overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+  return <BorderBeam><div className="flex flex-col gap-3 rounded-xl bg-background/40 backdrop-blur-md border border-border/30 overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
       <div className="aspect-square overflow-hidden bg-muted/20 relative cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
         {!imageLoaded && <div className="absolute inset-0 animate-pulse bg-muted/50" />}
         <img src={product.image} alt={product.name} loading="lazy" decoding="async" onLoad={() => setImageLoaded(true)} className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} />
@@ -73,6 +74,6 @@ const ProductCard = ({
           </button>
         </div>
       </div>
-    </div>;
+    </div></BorderBeam>;
 };
 export default ProductCard;

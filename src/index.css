@@ -98,7 +98,7 @@ All colors MUST be HSL.
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    z-index: -2;
+    z-index: -3;
     pointer-events: none;
   }
   
@@ -113,7 +113,7 @@ All colors MUST be HSL.
     height: 100vh;
     backdrop-filter: blur(12px);
     background-color: rgba(0, 0, 0, 0.45);
-    z-index: -1;
+    z-index: -2;
     pointer-events: none;
   }
 }
@@ -181,3 +181,12 @@ All colors MUST be HSL.
 .float-animation {
   animation: float 6s ease-in-out infinite;
 }
+
+@property --beam-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@keyframes beam-spin { to { --beam-angle: 360deg; } }
+.border-beam-layer {
+  background: conic-gradient(from var(--beam-angle), transparent 0deg, hsl(var(--primary)) 40deg, hsl(var(--accent)) 80deg, transparent 120deg);
+  animation: beam-spin 4s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) { .border-beam-layer { animation: none; } }
+@supports (-webkit-touch-callout: none) { .ios-input { font-size: 16px; } }

@@ -117,7 +117,9 @@ const ProductDetail = () => {
         </div>
       </header>
 
-      <main className="flex-1 pb-28">
+      <main className="flex-1 pb-28 lg:pb-8 lg:px-4 lg:pt-4">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-4 lg:items-start">
+        <div className="lg:col-span-4">
         {/* Product Image */}
         <div className="@container">
           <div className="@[480px]:px-4 @[480px]:py-3">
@@ -133,8 +135,9 @@ const ProductDetail = () => {
           </div>
         </div>
 
+        </div>
         {/* Product Info */}
-        <div className="mx-4 mt-4 mb-2 p-4 bg-background/40 backdrop-blur-md border border-border/30 rounded-xl">
+        <div className="mx-4 mt-4 mb-2 lg:m-0 lg:col-span-5 p-4 bg-background/40 backdrop-blur-md border border-border/30 rounded-xl">
           <h1 className="text-3xl leading-tight tracking-tight mb-3 font-extrabold">
             {product.name}
           </h1>
@@ -209,6 +212,22 @@ const ProductDetail = () => {
           </div>
         </div>
 
+        {/* Seller box (desktop) */}
+        <aside aria-label="خرید محصول" className="hidden lg:flex lg:col-span-3 lg:sticky lg:top-20 flex-col gap-4 p-4 rounded-xl bg-background/40 backdrop-blur-md border border-border/30">
+          <p className="text-sm text-muted-foreground">فروشنده: ترشی خانگی حکیمی</p>
+          <p className="text-2xl font-extrabold text-foreground">{product.price.toLocaleString('fa-IR')} تومان</p>
+          <div className="flex items-center justify-between rounded-lg border border-border bg-card">
+            <button aria-label="افزایش تعداد" onClick={() => setQuantity(quantity + 1)} className="px-3 py-2 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"><Plus className="h-5 w-5" /></button>
+            <span className="font-bold">{quantity.toLocaleString('fa-IR')}</span>
+            <button aria-label="کاهش تعداد" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-3 py-2 text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"><Minus className="h-5 w-5" /></button>
+          </div>
+          <p className="text-sm text-muted-foreground">جمع: {(product.price * quantity).toLocaleString('fa-IR')} تومان</p>
+          <button onClick={addToCart} className="flex items-center justify-center gap-2 rounded-lg bg-primary py-3 text-primary-foreground font-extrabold transition-colors duration-200 hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <ShoppingCart className="h-5 w-5" /> افزودن به سبد خرید
+          </button>
+        </aside>
+        </div>
+
         {/* Reviews */}
         <div className="px-4 py-4">
           <ProductReviews productId={product.id} />
@@ -216,7 +235,7 @@ const ProductDetail = () => {
       </main>
 
       {/* Sticky Add to Cart Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 z-10 bg-background/70 backdrop-blur-lg p-4 border-t border-border/50">
+      <footer className="lg:hidden fixed bottom-0 left-0 right-0 z-10 bg-background/70 backdrop-blur-lg p-4 border-t border-border/50">
         <div className="flex items-center gap-4">
           <div className="flex-1">
             <button onClick={addToCart} className="w-full flex items-center justify-center gap-2 rounded-lg bg-primary py-3 text-white text-lg font-bold hover:bg-primary/90 transition-colors">

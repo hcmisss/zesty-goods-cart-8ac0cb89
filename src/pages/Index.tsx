@@ -147,7 +147,7 @@ const Index = () => {
                         {product.name}
                       </p>
                       <div className="flex justify-between items-center">
-                        <p className="leading-normal font-bold text-[#523d28] text-base">
+                        <p className="leading-normal font-bold text-primary text-base">
                           {product.price.toLocaleString('fa-IR')} تومان
                         </p>
                         <button onClick={e => {

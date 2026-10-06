@@ -3,7 +3,6 @@ import { Heart, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
-import BorderBeam from "@/components/BorderBeam";
 export interface Product {
   id: string;
   name: string;
@@ -52,7 +51,7 @@ const ProductCard = ({
     e.stopPropagation();
     onAddToCart(product);
   };
-  return <BorderBeam><div className="flex flex-col gap-3 rounded-xl bg-background/40 backdrop-blur-md border border-border/30 overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+  return <div className="flex flex-col gap-3 rounded-xl bg-background/40 backdrop-blur-md border border-border/30 overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
       <div className="aspect-square overflow-hidden bg-muted/20 relative cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
         {!imageLoaded && <div className="absolute inset-0 animate-pulse bg-muted/50" />}
         <img src={product.image} alt={product.name} loading="lazy" decoding="async" onLoad={() => setImageLoaded(true)} className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} />
@@ -62,18 +61,18 @@ const ProductCard = ({
       </div>
 
       <div className="px-3 pb-3 flex flex-col gap-2">
-        <p className="leading-normal line-clamp-1 text-xl text-[#020202] font-bold">
+        <p className="leading-normal line-clamp-1 text-xl text-foreground font-bold">
           {product.name}
         </p>
         <div className="flex justify-between items-center">
-          <p className="text-sm leading-normal font-bold text-[#5b452d]">
+          <p className="text-sm leading-normal font-bold text-primary">
             {product.price.toLocaleString('fa-IR')} تومان
           </p>
-          <button onClick={handleAddToCart} className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white hover:scale-110 transition-transform">
+          <button onClick={handleAddToCart} className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground hover:scale-110 transition-transform">
             <Plus className="h-5 w-5" />
           </button>
         </div>
       </div>
-    </div></BorderBeam>;
+    </div>;
 };
 export default ProductCard;

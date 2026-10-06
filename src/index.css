@@ -150,11 +150,5 @@ All colors MUST be HSL.
   animation: float 6s ease-in-out infinite;
 }
 
-@property --beam-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
-@keyframes beam-spin { to { --beam-angle: 360deg; } }
-.border-beam-layer {
-  background: conic-gradient(from var(--beam-angle), transparent 0deg, hsl(var(--primary)) 40deg, hsl(var(--accent)) 80deg, transparent 120deg);
-  animation: beam-spin 4s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) { .border-beam-layer { animation: none; } }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; } }
 @supports (-webkit-touch-callout: none) { .ios-input { font-size: 16px; } }

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import logo from "@/assets/logo.png";
-import backgroundImage from "@/assets/pickles-background-optimized.jpg";
 
 interface LoadingScreenProps {
   onLoadComplete: () => void;
@@ -47,19 +46,10 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-background transition-opacity duration-500 ${
         isExiting ? "opacity-0" : "opacity-100"
       }`}
     >
-      {/* Background image - same as main site */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      />
-      
-      {/* Dark overlay with blur - same as main site */}
-      <div className="absolute inset-0 backdrop-blur-[12px] bg-black/45" />
-
       {/* Glass card */}
       <div
         className={`relative bg-card/40 backdrop-blur-md rounded-xl border border-border/30 shadow-lg p-8 flex flex-col items-center gap-6 transition-transform duration-500 ${

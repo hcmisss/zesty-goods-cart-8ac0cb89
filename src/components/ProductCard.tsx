@@ -3,7 +3,6 @@ import { Heart, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
-import BorderBeam from "@/components/BorderBeam";
 export interface Product {
   id: string;
   name: string;

@@ -1,9 +1,6 @@
 {
-"app":"peaceful-wiles-hsrrgkcsq"
-"port":3000
-"build":{
-"location":"iran"
-}
-"disks":[
-]
+  "app": "peaceful-wiles-hsrrgkcsq",
+  "platform": "react",
+  "build": { "location": "iran" },
+  "react": { "spa": true }
 }
